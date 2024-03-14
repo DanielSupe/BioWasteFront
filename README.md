@@ -1,8 +1,11 @@
 # React + Vite
 
 git clone https://github.com/DanielSupe/BioWasteFront.git
+
 cd BioWasteFront
+
 npm i
+
 npm run dev
 
 

@@ -1,34 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import NavB from './common/components/Nav'
+import HeroHome from './pages/Home/components/HeroHome'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className=' h-screen w-screen '>
+      <div className='h-[60vh] bg-orange-400 bg-cover bg-center bg-no-repeat flex flex-col items-start  box-border px-2 py-1' style={{ backgroundImage: `url('Images/Home/imagen_03.jpg')` }}>
+        <NavB/>
+        <p className='font-bold'>Learn to reuse Biodegradable waste!</p>
+        <div className=' h-full w-full flex justify-center items-center flex-col'>
+          <HeroHome description='BioWaste is a website dedicated to residents of a community who want to generate a positive ecological change in their residence, which will be viewed by an administrator who will be in charge of reviewing the progress of all residents.' title='What is BioWaste?'/>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

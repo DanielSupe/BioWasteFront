@@ -1,18 +1,23 @@
 import React from 'react'
-import NavB from './common/components/Nav'
-import HeroHome from './pages/Home/components/HeroHome'
-
+import TemplateHome from './pages/Home/template'
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import RegisterAdminTemplate from './pages/Log/templates/RegisterAdminTemplate';
+import RegisterUserTemplate from './pages/Log/templates/RegisterUserTemplate';
 const App = () => {
+
+
+
   return (
-    <div className=' h-screen w-screen '>
-      <div className='h-[60vh] bg-orange-400 bg-cover bg-center bg-no-repeat flex flex-col items-start  box-border px-2 py-1' style={{ backgroundImage: `url('Images/Home/imagen_03.jpg')` }}>
-        <NavB/>
-        <p className='font-bold'>Learn to reuse Biodegradable waste!</p>
-        <div className=' h-full w-full flex justify-center items-center flex-col'>
-          <HeroHome description='BioWaste is a website dedicated to residents of a community who want to generate a positive ecological change in their residence, which will be viewed by an administrator who will be in charge of reviewing the progress of all residents.' title='What is BioWaste?'/>
-        </div>
-      </div>
-    </div>
+     <BrowserRouter>
+        <Routes>
+        
+        <Route path="/" element={<TemplateHome/>} />
+        <Route path="/RegisterAdmin" element={<RegisterAdminTemplate/>} />
+        <Route path="/RegisterUser" element={<RegisterUserTemplate/>} />
+
+        </Routes>
+
+       </BrowserRouter> 
   )
 }
 

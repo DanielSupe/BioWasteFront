@@ -4,7 +4,13 @@ export default {
   theme: {
     extend: {
       backgroundColor:{
-        whiteBioWaste: "#EAE2DE"
+        whiteBioWaste: "#EAE2DE",
+        blueBioWaste: "#9DC4C4",
+        greenBioWaste: "#81e28b"
+      },
+      colors:{
+        GreenRecycle: "#006838",
+        blueBioWaste: "#53AAFA",
       }
     },
   },

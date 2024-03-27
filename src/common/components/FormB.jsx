@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import InputB from './InputB';
 const FormB = ({list,handleChange,form}) => {
   return (
-    <div className=' w-full h-auto flex flex-col items-start justify-start'>
+    <div className=' w-full h-auto'>
+        <div className=' w-full sm:w-[80%] h-full flex flex-col items-start justify-start'>
         {list.map((campo)=>{
             return(
                 <InputB
@@ -17,9 +18,11 @@ const FormB = ({list,handleChange,form}) => {
                 key={campo.title}
                 options={campo.options ? campo.options:[]}
                 secondInput={campo.secondInput ? campo.secondInput:null}
+                info={campo.info ? campo.info: null}
                 />
             )
         })}
+        </div>
 
     </div>
   )

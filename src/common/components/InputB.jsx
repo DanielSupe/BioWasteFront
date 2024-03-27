@@ -1,18 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Input} from 'reactstrap'
-
+import { CiCircleInfo } from "react-icons/ci";
+import Swal from 'sweetalert2';
 const InputB = ({
     type="text",
     placeholder="",
     title,
     nameKey,
     handleChange,
-    classname = " w-[50%] mt-1 mr-2 pt-2 px-2 pb-1 bg-transparent border-b border-black focus:outline-none",
+    classname = " w-full mt-1 mr-2 pt-2 px-2 pb-1 bg-transparent border-b border-black focus:outline-none",
     value,
     options,
-    secondInput
+    secondInput,
+    info
 }) => {
+
+
+
+  const swalInfo = (info)=>{
+    console.log(info,"infoo")
+    Swal.fire({
+      icon: 'info',
+      title: 'Information',
+      text: info,
+      confirmButtonText: 'accept'
+    });
+  }
+
+
   return (
     <div className=' w-full flex justify-start items-end'>
         <span className=' text-lg pr-2 whitespace-nowrap'>{title}</span>
@@ -57,6 +73,8 @@ const InputB = ({
             </>
         )}
 
+        {info ? <CiCircleInfo onClick={()=>{swalInfo(info)}} className=' pl-2 w-12 h-12 text-GreenRecycle cursor-pointer'/>:null}
+
     </div>
   )
 }
@@ -70,7 +88,8 @@ InputB.propTypes = {
     value:PropTypes.any.isRequired,
     options:PropTypes.any,
     placeholder: PropTypes.string,
-    secondInput: PropTypes.any
+    secondInput: PropTypes.any,
+    info:PropTypes.string
 };
 
 

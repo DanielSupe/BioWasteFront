@@ -9,6 +9,7 @@ import ContactoFooter from '../components/ContactoFooter';
 import Popup from '../../../common/components/IpopupB';
 import OptionsRegister from '../components/OptionsRegister';
 import LoginHome from '../components/LoginHome';
+import FooterTitles from '../../../common/components/FooterTitles';
 const TemplateHome = () => {
 
 
@@ -61,11 +62,7 @@ const TemplateHome = () => {
 
             <div className='w-full flex flex-col justify-center items-start'>
                 <p className='font-medium text-lg box-border px-2'>Integrative proyect2/ 2024</p>
-                <div className=' flex justify-center items-center text-md h-full'>
-                    <div className='h-full border-black border-r-2 px-2'>Privacidad</div>
-                    <p className='border-black border-r-2 px-2'>Terminos de uso</p>
-                    <p className='px-2'>Preferencias sobre cookies</p>
-                </div>
+                <FooterTitles/>
             </div>
 
 

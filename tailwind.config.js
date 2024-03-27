@@ -11,6 +11,9 @@ export default {
       colors:{
         GreenRecycle: "#006838",
         blueBioWaste: "#53AAFA",
+      },
+      borderColor:{
+        grayBioWaste: "#A8A8A8"
       }
     },
   },

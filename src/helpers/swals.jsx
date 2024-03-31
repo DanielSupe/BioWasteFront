@@ -4,7 +4,7 @@ export const showProgress = () => {
     return Swal.fire({
       title: 'Loading...',
       backdrop: true,
-      html: '',
+      html: '', 
       width: 500,
       allowEscapeKey: false,
       allowOutsideClick: false,

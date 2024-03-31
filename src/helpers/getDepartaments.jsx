@@ -1,10 +1,10 @@
 export const fetchDataDepartaments = async () => {
     try {
-      const response = await fetch('https://api-colombia.com/api/v1/Department');
-      if (!response.ok) {
+      const responsive = await fetch('https://api-colombia.com/api/v1/Department');
+      if (!responsive.ok) {
         throw new Error('Error al obtener los datos');
       }
-      const data = await response.json();
+      const data = await responsive.json();
       // Transformar los datos según lo solicitado
       const transformedData = data.map((department) => ({
         value: department.id,

@@ -13,7 +13,6 @@ export const LoginSlice = createSlice({
     initialState,
     reducers:{
         LoginUser: (state,action)=>{
-            console.log("emtro en el shile")
             state.Loading = true;
         },
         LoginUserSuccess: (state,action)=>{

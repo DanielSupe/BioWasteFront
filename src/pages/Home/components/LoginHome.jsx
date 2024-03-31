@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import { LoginUser } from '../../../redux/Slices/authentication/login/LoginSlice'
 import Swal from 'sweetalert2'
 import axios, { Axios } from 'axios'
-const LoginHome = () => {
+import PropTypes from 'prop-types';
+import { showProgress } from '../../../helpers/swals'
+const LoginHome = ({handreregister}) => {
+
+  const history = useNavigate()
 
   const { Loading, error, exito } = useSelector((state) => ({
     error: state.Login.error,
@@ -41,25 +45,11 @@ const LoginHome = () => {
     dispatch(LoginUser(form))
   }
 
-  const showProgress = () => {
-    return Swal.fire({
-      title: 'Loading...',
-      backdrop: true,
-      html: '',
-      width: 500,
-      allowEscapeKey: false,
-      allowOutsideClick: false,
-      timerProgressBar: true,
-      allowEnterKey: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    }).then((result) => { });
-  };
 
   useEffect(()=>{
     if(exito){
       console.log("Entrooo al iniciooo")
+      history('/Inicio')
     }
   },[exito])
 
@@ -77,7 +67,7 @@ const LoginHome = () => {
           </div>
         </div>
 
-        <Button className={`p-2 mt-2 font-bold text-xl bg-greenBioWaste rounded-lg text-white`}>New Account</Button>
+        <Button onClick={()=>{handreregister("",true)}} className={`p-2 mt-2 font-bold text-xl bg-greenBioWaste rounded-lg text-white`}>New Account</Button>
 
 
       </div>
@@ -85,5 +75,10 @@ const LoginHome = () => {
     </div>
   )
 }
+
+LoginHome.propTypes = {
+  handreregister: PropTypes.func.isRequired,
+
+};
 
 export default LoginHome

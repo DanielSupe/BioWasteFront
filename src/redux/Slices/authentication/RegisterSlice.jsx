@@ -3,10 +3,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    User: {},
+    UserCreate: {},
     Loading: false,
     error:{},
-    prueba:1
+    exito: false
 };
 
 export const RegisterSlice = createSlice({
@@ -16,11 +16,14 @@ export const RegisterSlice = createSlice({
         RegisterUser: (state,action)=>{
             state.Loading = true;
         },
-        RegisterUserSuccess: (state)=>{
+        RegisterUserSuccess: (state,action)=>{
+            state.UserCreate = action.payload
             state.Loading = false;
+            state.exito = true;
         },
-        RegisterUserFail: (state)=>{
+        RegisterUserFail: (state,action)=>{
             state.Loading = false;
+            state.error = action.payload
         }
     }
 })

@@ -7,12 +7,23 @@ import FooterTitles from '../../../common/components/FooterTitles'
 import {Button} from 'reactstrap'
 import CreateResidence from '../components/CreateResidence'
 import { generarListaNumeros } from '../../../helpers/optionsSelect'
+import { useDispatch, useSelector } from 'react-redux'
+import { showProgress } from '../../../helpers/swals'
+import { RegisterUserAdmin } from '../../../redux/Slices/authentication/RegisterAdmin/RegisterAdminSlice'
 
 const RegisterAdminTemplate = () => {
 
+  const { Loading, error, exito } = useSelector((state) => ({
+    error: state.RegisterAdmin.error,
+    Loading: state.RegisterAdmin.Loading,
+    exito: state.RegisterAdmin.exito,
+
+  }))
+
+
 
   const[optionsDepartaments,setoptionsDepartaments] = useState([]);
-
+  const dispatch = useDispatch();
 
   const[form, setForm] = useState({Email:"",Username:"",Password:"",confirmPassword:"",firstName:"",lastName:"",phoneNumber:"",address:"",city:"",province:"",postalCode:"",verify:false,residenceName:"",numberResidents:"",emergencyNumber:"",addressResidence:"",cityResidence:"",provinceResidence:"",postalCodeResidence:""})
 
@@ -70,12 +81,31 @@ const RegisterAdminTemplate = () => {
   useEffect(()=>{
     console.log(form,"form")
     const {Email,Username,Password,confirmPassword,firstName,lastName,phoneNumber,address,city,province,postalCode,verify} = form;
-    if((Email != "" && Username != "" && Password != "" && confirmPassword != "" && firstName!= "" && lastName != "" && phoneNumber!= "" && address != "" && city != "" && province != "" && postalCode != "") && Password === confirmPassword){
+    if((Email != "" && Username != "" && Password != "" && confirmPassword != "" && firstName!= "" && lastName != "" && phoneNumber!= "" && address != "" && city != "" && province != "" && postalCode != "") && Password === confirmPassword && verify){
       setDisabled(false)
     }else{
       setDisabled(true)
     }
   },[form])
+
+  const handleCheckboxChange = () => {
+    setForm({
+      ...form,
+      verify: !form.verify
+    });
+  };
+
+
+  const crearCuentaAdmin = ()=>{
+    showProgress()
+    dispatch(RegisterUserAdmin(form))
+  }
+
+  useEffect(()=>{
+    if(exito){
+      setPass(true)
+    }
+  },[exito])
 
   return (
     <div className=' min-h-screen w-full bg-no-repeat bg-center bg-cover flex justify-center items-center box-border p-2' style={{ backgroundImage: `url('Images/Register/imagen_fondo.jpeg')` }}>
@@ -93,9 +123,10 @@ const RegisterAdminTemplate = () => {
         <div className='mt-4 w-full border border-grayBioWaste' />
         <div className='flex flex-col justify-start items-start mt-4 px-4'>
           <div className='flex justify-start items-start'>
-            <input
-            onChange={()=>{}}//aqui se despachara la accion para mandar la notificacion al correo
-              type='checkbox'
+              <input
+              type="checkbox"
+              checked={form.verify}
+              onChange={handleCheckboxChange}
             />
             <p>By clicking here, a verification to validate your account will be sent to your email/phone, the code will be sent once but you can request another one at any time.</p>
           </div>
@@ -103,7 +134,7 @@ const RegisterAdminTemplate = () => {
         </div>
         <div className='mt-4 w-full border border-grayBioWaste' />
         <Button
-        onClick={()=>{setPass(true)}}
+        onClick={()=>{crearCuentaAdmin()}}
          className={`px-5 py-1 rounded-lg bg-blueBioWaste text-white text-xl mt-2 ${disabled ? " cursor-no-drop":"cursor-pointer hover:bg-greenBioWaste duration-500 transition"}`}
          disabled={disabled}
          >Create Account</Button>
@@ -112,7 +143,7 @@ const RegisterAdminTemplate = () => {
             <FooterTitles/>
           </div>
           </>
-        ): <CreateResidence handleChange={handleChange} list={Recidence}/> }
+        ): <CreateResidence handleChange={handleChange} list={Recidence} form={form}/> }
       </div>
     </div>
   )

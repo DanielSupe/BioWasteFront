@@ -14,10 +14,7 @@ import { useDispatch } from 'react-redux';
 import { RegisterUser } from '../../../redux/Slices/authentication/RegisterSlice';
 const TemplateHome = () => {
 
-             const dispatch = useDispatch();
-             useEffect(()=>{
-                dispatch(RegisterUser({name:"Entrooooo"}))
-             },[])
+            
 
 
 
@@ -33,8 +30,11 @@ const TemplateHome = () => {
     ]
 
 
-    const handlePopUp = (title)=>{
-        console.log("entro")
+    const handlePopUp = (title,inver)=>{
+        if(inver){
+            setPopUpRegister(!popUpRegister);
+            setPopUpLogin(!popUpLogin)
+        }
         switch(title){
             case "New Account":
                 setPopUpRegister(!popUpRegister);
@@ -83,7 +83,7 @@ const TemplateHome = () => {
 
             <Popup isOpen={popUpLogin} onClose={handlePopUp} name={"Login"}>
                 <div className=' sm:w-[400px] sm:h-[390px]'>
-                    <LoginHome/>
+                    <LoginHome handreregister={handlePopUp}/>
                 </div>
             </Popup>
 

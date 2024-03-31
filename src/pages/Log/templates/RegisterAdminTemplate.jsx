@@ -94,7 +94,7 @@ const RegisterAdminTemplate = () => {
         <div className='flex flex-col justify-start items-start mt-4 px-4'>
           <div className='flex justify-start items-start'>
             <input
-            onChange={()=>{}}//aqui se despachara la accion para mandar la notificacion al correo
+            onChange={()=>{}} //aqui se despachara la accion para mandar la notificacion al correo
               type='checkbox'
             />
             <p>By clicking here, a verification to validate your account will be sent to your email/phone, the code will be sent once but you can request another one at any time.</p>

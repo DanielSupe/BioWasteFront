@@ -19,8 +19,8 @@ const CreateResidence = ({handleChange,list}) => {
 
         <Button
         onClick={()=>{alert("ola")}}
-         className={`w-full py-1 rounded-lg bg-blueBioWaste text-white text-xl mt-2 ${disabled ? " cursor-no-drop":"cursor-pointer hover:bg-greenBioWaste duration-500 transition"}`}
-         disabled={disabled}
+           className={`w-full py-1 rounded-lg bg-blueBioWaste text-white text-xl mt-2 ${disabled ? " cursor-no-drop":"cursor-pointer hover:bg-greenBioWaste duration-500 transition"}`}
+           disabled={disabled}
          
          >Accept</Button>
 

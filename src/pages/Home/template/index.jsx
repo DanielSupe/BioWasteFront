@@ -10,7 +10,15 @@ import Popup from '../../../common/components/IpopupB';
 import OptionsRegister from '../components/OptionsRegister';
 import LoginHome from '../components/LoginHome';
 import FooterTitles from '../../../common/components/FooterTitles';
+import { useDispatch } from 'react-redux';
+import { RegisterUser } from '../../../redux/Slices/authentication/RegisterSlice';
 const TemplateHome = () => {
+
+             const dispatch = useDispatch();
+             useEffect(()=>{
+                dispatch(RegisterUser({name:"Entrooooo"}))
+             },[])
+
 
 
         const [popUpRegister, setPopUpRegister] = useState(false);

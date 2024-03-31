@@ -36,7 +36,7 @@ const RegisterUserTemplate = () => {
   },[form])
 
   return (
-    <div className=' h-screen w-full bg-no-repeat bg-center bg-cover flex justify-center items-center box-border p-2' style={{ backgroundImage: `url('Images/Register/imagen_fondo.jpeg')` }}>
+    <div className=' min-h-screen w-full bg-no-repeat bg-center bg-cover flex justify-center items-center box-border p-2' style={{ backgroundImage: `url('Images/Register/imagen_fondo.jpeg')` }}>
       <div className='w-[600px] bg-whiteBioWaste rounded-lg text-center box-border p-4'>
         <span className=' text-xl'>Create a new account</span>
         <div className='flex justify-center items-center mb-4'>

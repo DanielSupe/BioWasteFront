@@ -5,7 +5,7 @@ const initialState = {
     User: {},
     Loading: false,
     error:{},
-    exito: false
+    exito: false,
 };
 
 export const LoginSlice = createSlice({

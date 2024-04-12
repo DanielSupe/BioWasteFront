@@ -6,6 +6,7 @@ import RegisterUserTemplate from './pages/Log/templates/RegisterUserTemplate';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import TemplateInicio from './pages/Inicio/template';
+import SideBar from './common/components/SideBar';
 const App = () => {
 
 
@@ -18,7 +19,14 @@ const App = () => {
         <Route path="/" element={<TemplateHome/>} />
         <Route path="/RegisterAdmin" element={<RegisterAdminTemplate/>} />
         <Route path="/RegisterUser" element={<RegisterUserTemplate/>} />
-        <Route path="/Inicio" element={<TemplateInicio/>} />
+        {/* <Route path="/Inicio" element={<TemplateInicio/>} /> */}
+        <Route path="/Main" element={<SideBar/>}>
+          <Route index element={<TemplateInicio />} />
+          <Route path="/Main/MonitorinPlan" element={<TemplateInicio />} />
+          <Route path="/Main/Residence" element={<TemplateInicio />} />
+          <Route path="/Main/Alarm" element={<TemplateInicio />} />
+          {/* Otras rutas hijas aquí */}
+        </Route>
 
         </Routes>
 

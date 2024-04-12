@@ -6,7 +6,8 @@ export default {
       backgroundColor:{
         whiteBioWaste: "#EAE2DE",
         blueBioWaste: "#9DC4C4",
-        greenBioWaste: "#81e28b"
+        greenBioWaste: "#81e28b",
+        BlueHeader: "#a0c4c4"
       },
       colors:{
         GreenRecycle: "#006838",

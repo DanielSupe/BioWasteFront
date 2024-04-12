@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -19,8 +19,9 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import NavW from './Nav';
 import ListIcon from '@mui/icons-material/List';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -97,7 +98,21 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideBar({ children }) {
   const theme = useTheme();
+  const history = useNavigate();
   const [open, setOpen] = useState(false);
+
+  const { exito,User } = useSelector((state) => ({
+    exito: state.Login.exito,
+    User: state.Login.User,
+
+  })) 
+
+  useEffect(()=>{
+    console.log(User)
+    if(Object.keys(User).length === 0){
+      history('/')
+    }
+  },[])
 
   const handleDrawerOpen = () => {
     setOpen(true);

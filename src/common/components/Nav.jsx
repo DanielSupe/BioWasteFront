@@ -18,8 +18,8 @@ const inPage = [
 
 const NavB = ({handlePopUp}) => {
 
-  const { Loading, error, exito } = useSelector((state) => ({
-    error: state.Login.error,
+  const { Loading, User, exito } = useSelector((state) => ({
+    User: state.Login.User,
     Loading: state.Login.Loading,
     exito: state.Login.exito,
 
@@ -34,7 +34,7 @@ const NavB = ({handlePopUp}) => {
       </div>
       <div className='hidden md:block ml-auto'>
         <div className='h-full flex justify-center items-center '>
-          {exito != true ? 
+          {Object.keys(User).length === 0 ? 
           
           (LinkNav.map((rut, index)=>{
               return(

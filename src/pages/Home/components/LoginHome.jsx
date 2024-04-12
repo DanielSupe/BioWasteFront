@@ -48,8 +48,7 @@ const LoginHome = ({handreregister}) => {
 
   useEffect(()=>{
     if(exito){
-      console.log("Entrooo al iniciooo")
-      history('/Inicio')
+      history('/Main')
     }
   },[exito])
 

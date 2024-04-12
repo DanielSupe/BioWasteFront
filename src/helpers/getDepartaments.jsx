@@ -17,4 +17,4 @@ export const fetchDataDepartaments = async () => {
     } catch (error) {
       console.error('Error:', error);
     }
-};
+}; 

@@ -81,4 +81,4 @@ LoginHome.propTypes = {
 
 };
 
-export default LoginHome
+export default LoginHome 

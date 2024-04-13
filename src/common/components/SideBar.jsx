@@ -22,6 +22,8 @@ import ListIcon from '@mui/icons-material/List';
 import { Link, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import ContactoFooter from '../../pages/Home/components/ContactoFooter';
+import FooterTitles from './FooterTitles';
 
 const drawerWidth = 240;
 
@@ -123,6 +125,7 @@ export default function SideBar({ children }) {
   };
 
   return (
+    <>
     <Box className= " h-screen w-full overflow-hidden" sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -175,7 +178,16 @@ export default function SideBar({ children }) {
         <DrawerHeader />
         <Outlet />
       </Box>
+      <div className="w-screen max-h-[10%] fixed bottom-0 z-[1201]">
+      <ContactoFooter/>
+      <div className='w-full flex flex-col justify-center items-start bg-white'>
+                <p className='font-medium text-lg box-border px-2'>Integrative proyect2/ 2024</p>
+                <FooterTitles/>
+            </div>
+    </div>
     </Box>
+
+    </>
   );
 }
 

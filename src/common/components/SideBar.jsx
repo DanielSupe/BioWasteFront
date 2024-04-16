@@ -144,7 +144,7 @@ export default function SideBar() {
           <List>
             {roter.map((text, index) => (
               <>
-                <Link to={`${text.link}`} key={text.name}>
+                <Link to={`${text.link}`} key={`${text.name}-${index}`}>
                   <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                       sx={{
@@ -174,7 +174,7 @@ export default function SideBar() {
             ))}
           </List>
         </Drawer>
-        <Box className="h-full w-full flex flex-col" component="main"sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
+        <Box className="h-full w-full flex flex-col" component="main"sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` }, }}>
           <DrawerHeader />
           <div className="flex-grow overflow-auto">
             <Outlet />

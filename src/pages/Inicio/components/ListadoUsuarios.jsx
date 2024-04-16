@@ -15,9 +15,9 @@ const ListadoUsuarios = () => {
 
   return (
     <>
-        {listaprueba.map((user)=>{
+        {listaprueba.map((user,index)=>{
             return(
-                <div className='w-full h-auto flex justify-around items-center box-border p-1 border-b-4 border-slate-300' key={user.id}>
+                <div className='w-full h-auto flex justify-around items-center box-border p-1 border-b-4 border-slate-300' key={`${user.NameUser}-${index}`}>
                     <img className='w-[45px] h-[45px] rounded-[50%]' src={user.urlFoto != "" ? user.urlFoto : photoDefeft}/>
                     <p className=' text-gray-400 font-medium text-xl w-1/3 text-center'>{user.NameUser} #{user.id}</p>
                     <div className='flex justify-center items-center h-full'>

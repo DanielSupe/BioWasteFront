@@ -28,9 +28,9 @@ import FooterTitles from './FooterTitles';
 const drawerWidth = 240;
 
 const roter = [
-  { name: "Menu", link: "/Main", SVG: <PlayArrowIcon />},
+  { name: "Menu", link: "/Main", SVG: <PlayArrowIcon /> },
   { name: "Monitorin Plan", link: "/Main/MonitorinPlan", SVG: <PlayArrowIcon /> },
-  { name: "Residence", link: "/Main/Residence", SVG:<PlayArrowIcon /> },
+  { name: "Residence", link: "/Main/Residence", SVG: <PlayArrowIcon /> },
   { name: "Alarm", link: "/Main/Alarm", SVG: <PlayArrowIcon /> }
 ];
 
@@ -98,23 +98,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function SideBar({ children }) {
+export default function SideBar() {
   const theme = useTheme();
   const history = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const { exito,User } = useSelector((state) => ({
+  const { exito, User } = useSelector((state) => ({
     exito: state.Login.exito,
     User: state.Login.User,
 
-  })) 
+  }))
 
-  useEffect(()=>{
-    console.log(User)
-    if(Object.keys(User).length === 0){
-      history('/')
-    }
-  },[])
+  // useEffect(() => {
+  //   console.log(User)
+  //   if (Object.keys(User).length === 0) {
+  //     history('/')
+  //   }
+  // }, [])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -126,71 +126,69 @@ export default function SideBar({ children }) {
 
   return (
     <>
-    <Box className= " h-screen w-full overflow-hidden" sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar className=' bg-BlueHeader text-black'>
-          <span className='w-6 h-6 cursor-pointer' onClick={handleDrawerOpen}>{<ListIcon />}</span>
-          <NavW />
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open} sx={{ '& .MuiDrawer-paper': { backgroundColor: "#a0c4c4" } }}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {roter.map((text, index) => (
-            <>
-            <Link to={`${text.link}`} key={text.name}>
-              <ListItem disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    '& .MuiListItemText-primary': { fontSize: '2rem' },
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                      color:"white",
-                      '& .MuiSvgIcon-root': { fontSize: '2rem' },
-                    }}
-                  >
-                    {text.SVG}
-                  </ListItemIcon>
-                  <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color:"white", '& .MuiSvgIcon-root': { fontSize: '2rem' },whiteSpace: 'normal', }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-            <Divider />
-            </>
-          ))}
-        </List>
-      </Drawer>
-      <Box className=' h-full w-full' component="main" sx={{ flexGrow: 1, p: 0 }}>
-        <DrawerHeader />
-        <Outlet />
-      </Box>
-      <div className="w-screen max-h-[10%] fixed bottom-0 z-[1201]">
-      <ContactoFooter/>
-      <div className='w-full flex flex-col justify-center items-start bg-white'>
-                <p className='font-medium text-lg box-border px-2'>Integrative proyect2/ 2024</p>
-                <FooterTitles/>
+      <Box className=" h-screen w-screen overflow-hidden" sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar className=' bg-BlueHeader text-black'>
+            <span className='w-6 h-6 cursor-pointer' onClick={handleDrawerOpen}>{<ListIcon />}</span>
+            <NavW />
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open} sx={{ '& .MuiDrawer-paper': { backgroundColor: "#a0c4c4" } }}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {roter.map((text, index) => (
+              <>
+                <Link to={`${text.link}`} key={text.name}>
+                  <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        '& .MuiListItemText-primary': { fontSize: '2rem' },
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                          color: "white",
+                          '& .MuiSvgIcon-root': { fontSize: '2rem' },
+                        }}
+                      >
+                        {text.SVG}
+                      </ListItemIcon>
+                      <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "white", '& .MuiSvgIcon-root': { fontSize: '2rem' }, whiteSpace: 'normal', }} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+                <Divider />
+              </>
+            ))}
+          </List>
+        </Drawer>
+        <Box className="h-full w-full flex flex-col" component="main"sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
+          <DrawerHeader />
+          <div className="flex-grow overflow-auto">
+            <Outlet />
+          </div>
+          <div className="w-screen max-h-[20%] bg-white">
+            <ContactoFooter />
+            <div className="w-full flex flex-col justify-center items-start">
+              <p className="font-medium text-lg box-border px-2">Integrative proyect2/ 2024</p>
+              <FooterTitles />
             </div>
-    </div>
-    </Box>
+          </div>
+        </Box>
+      </Box>
 
     </>
   );
 }
-
-SideBar.propTypes = {
-    children: PropTypes.node.isRequired
-};

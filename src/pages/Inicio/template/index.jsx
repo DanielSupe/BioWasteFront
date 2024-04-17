@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListadoUsuarios from '../components/ListadoUsuarios'
 import ProgressBar from '../components/ProgressBar'
 import MonitoringPlan from '../components/MonitoringPlan'
+import Popup from '../../../common/components/IpopupB'
+import Tutorial from '../components/Tutorial'
+import { useDispatch, useSelector } from 'react-redux'
+import { NextPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
 
 const TemplateInicio = () => {
+  const dispatch = useDispatch();
+
+  const { pass } = useSelector((state) => ({
+    pass: state.Tutorial.pass,
+
+}))
+
+  const [popUpTutorial, setPopUpTutorial] = useState(false);
+
+  const handlePopUp = ()=>{
+    setPopUpTutorial(!popUpTutorial);
+}
+
+const nextPassTutorial = ()=>{
+  if(pass >= 5){
+    handlePopUp()
+  }else{
+    dispatch(NextPass())
+  }
+}
+
   return (
     <div className='w-full h-full p-4 md:p-12 box-border flex flex-col md:flex-row justify-start md:justify-center  items-start md:items-center  bg-cover bg-center bg-no-repeat overflow-auto' style={{ backgroundImage: `url('Images/Main/fondoMain.jpg')` }}>
-      <div className='h-full min-h-[200px] w-full md:w-1/2 bg-white rounded-lg box-border md:p-3 md:mr-9 flex flex-col mb-1 md:mb-0'>
+      <div className={`${pass == 5 ? "z-[1204]":""} h-full min-h-[200px] w-full md:w-1/2 bg-white rounded-lg box-border md:p-3 md:mr-9 flex flex-col mb-1 md:mb-0`}>
         <h3 className=' text-blueMainTtile text-xl '>Monitoring plan</h3>
         <div className=' rounded-lg w-full border-b-2 border-slate-300'/>
 
@@ -19,7 +44,7 @@ const TemplateInicio = () => {
      {/* Segundo cuadroooo -----------------------------------------*/}
       <div className='h-full min-h-[200px] w-full md:w-1/3 rounded-lg flex flex-col gap-4'>
 
-        <div className='  w-full h-1/3 rounded-lg bg-custom-gradient flex justify-center items-center'>
+        <div onClick={()=>{handlePopUp()}} className={`${pass == 3 ? "z-[1204]":""}  w-full h-1/3 rounded-lg bg-custom-gradient flex justify-center items-center`}>
           <img className=' min-h-[80%] max-h-[100%] box-border p-5' src='Images/Main/LlamaMain.png'/>
           <p className=' font-bold text-6xl text-white'>100{/* Aqui va la variable que contiene la racha   */}</p>
         </div>
@@ -27,7 +52,7 @@ const TemplateInicio = () => {
 
 
         {/* LISTADO DE USUARIO------------------------------------------------------- */}
-        <div className=' bg-white w-full h-full rounded-lg overflow-hidden flex flex-col'>
+        <div className={`${pass == 4 ? "z-[1204]":""} bg-white w-full h-full rounded-lg overflow-hidden flex flex-col`}>
           <div className='text-2xl w-full box-border p-1 text-white bg-blueBioWaste'>Residence</div>
 
 
@@ -37,6 +62,10 @@ const TemplateInicio = () => {
         </div>
 
       </div>
+
+      <Popup onClickPopup={nextPassTutorial} isOpen={popUpTutorial} onClose={handlePopUp} name={"New Account"}>
+                <Tutorial/>
+            </Popup>
 
 
     </div>

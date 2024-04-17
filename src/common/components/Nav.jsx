@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import IconBioWaste from './IconBioWaste'
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -22,13 +22,23 @@ const NavB = ({handlePopUp}) => {
     User: state.Login.User,
     Loading: state.Login.Loading,
     exito: state.Login.exito,
-
   }))
+
+  const { pass } = useSelector((state) => ({
+    pass: state.Tutorial.pass,
+
+}))
+
+
+useEffect(()=>{
+  console.log(pass," PASS DESDE EL NAV")
+},[pass])
+
 
 
 
   return (
-    <div className='flex w-full justify-start items-center'>
+    <div className='flex w-full justify-start items-center z-[2000]'>
       <div className='h-full'>
         <IconBioWaste Log={Object.keys(User).length === 0  ? false:true}/>
       </div>
@@ -44,7 +54,7 @@ const NavB = ({handlePopUp}) => {
           })):(
             inPage.map((rut, index)=>{
               return(
-                <p  className=' py-1 px-2 rounded-2xl mx-2 bg-whiteBioWaste font-bold cursor-pointer hover:bg-blueBioWaste' key={index}> {rut.title}</p>
+                <p  className={` ${pass == 1 ? "relative z-[9999]":""} py-1 px-2 rounded-2xl mx-2  font-bold cursor-pointer bg-whiteBioWaste hover:bg-blueBioWaste`} key={index}> {rut.title}</p>
 
               )
           })

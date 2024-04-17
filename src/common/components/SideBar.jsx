@@ -103,11 +103,13 @@ export default function SideBar() {
   const history = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const { exito, User } = useSelector((state) => ({
+  const { exito, User,pass } = useSelector((state) => ({
     exito: state.Login.exito,
     User: state.Login.User,
+    pass: state.Tutorial.pass,
 
   }))
+
 
   // useEffect(() => {
   //   console.log(User)
@@ -144,7 +146,7 @@ export default function SideBar() {
           <List>
             {roter.map((text, index) => (
               <>
-                <Link to={`${text.link}`} key={`${text.name}-${index}`}>
+                <Link className={`${pass == 2 ? " bg-orange-300 !important":""}`} to={`${text.link}`} key={`${text.name}-${index}`}>
                   <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                       sx={{

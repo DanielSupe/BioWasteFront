@@ -12,8 +12,8 @@ const LinkNav = [
 const inPage = [
   {title: "Contact BioWasted", link:"/Contacto"},
   {title: "Change account", link:"/Main/changeAccount"},
-  {title: "Settings", link:"/settings"},
-  {title: <PermIdentityIcon/> , link:"/Profile"},//El icono lo tengo que pasar a un componente
+  {title: "Settings", link:"/Main/settings"},
+  {title: <PermIdentityIcon/> , link:"/Main/Profile"},//El icono lo tengo que pasar a un componente
 ]
 
 const NavB = ({handlePopUp}) => {
@@ -54,7 +54,7 @@ useEffect(()=>{
           })):(
             inPage.map((rut, index)=>{
               return(
-                <p  className={` ${pass == 1 ? "relative z-[9999]":""} py-1 px-2 rounded-2xl mx-2  font-bold cursor-pointer bg-whiteBioWaste hover:bg-blueBioWaste`} key={index}> {rut.title}</p>
+                <p  className={` ${pass == 1 ? " bg-yellow-300":""} py-1 px-2 rounded-2xl mx-2  font-bold cursor-pointer bg-whiteBioWaste hover:bg-blueBioWaste`} key={index}> {rut.title}</p>
 
               )
           })

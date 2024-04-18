@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ListadoUsuarios from '../components/ListadoUsuarios'
 import ProgressBar from '../components/ProgressBar'
 import MonitoringPlan from '../components/MonitoringPlan'
@@ -10,8 +10,10 @@ import { NextPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
 const TemplateInicio = () => {
   const dispatch = useDispatch();
 
-  const { pass } = useSelector((state) => ({
+  const { pass,exitoAdmin,exitoUser} = useSelector((state) => ({
     pass: state.Tutorial.pass,
+    exitoAdmin: state.RegisterAdmin.exito,
+    exitoUser: state.Register.exito,
 
 }))
 
@@ -29,6 +31,12 @@ const nextPassTutorial = ()=>{
   }
 }
 
+useEffect(()=>{
+  if(exitoAdmin || exitoUser){
+    handlePopUp()
+  }
+},[])
+
   return (
     <div className='w-full h-full p-4 md:p-12 box-border flex flex-col md:flex-row justify-start md:justify-center  items-start md:items-center  bg-cover bg-center bg-no-repeat overflow-auto' style={{ backgroundImage: `url('Images/Main/fondoMain.jpg')` }}>
       <div className={`${pass == 5 ? "z-[1204]":""} h-full min-h-[200px] w-full md:w-1/2 bg-white rounded-lg box-border md:p-3 md:mr-9 flex flex-col mb-1 md:mb-0`}>
@@ -44,7 +52,7 @@ const nextPassTutorial = ()=>{
      {/* Segundo cuadroooo -----------------------------------------*/}
       <div className='h-full min-h-[200px] w-full md:w-1/3 rounded-lg flex flex-col gap-4'>
 
-        <div onClick={()=>{handlePopUp()}} className={`${pass == 3 ? "z-[1204]":""}  w-full h-1/3 rounded-lg bg-custom-gradient flex justify-center items-center`}>
+        <div className={`${pass == 3 ? "z-[1204]":""}  w-full h-1/3 rounded-lg bg-custom-gradient flex justify-center items-center`}>
           <img className=' min-h-[80%] max-h-[100%] box-border p-5' src='Images/Main/LlamaMain.png'/>
           <p className=' font-bold text-6xl text-white'>100{/* Aqui va la variable que contiene la racha   */}</p>
         </div>

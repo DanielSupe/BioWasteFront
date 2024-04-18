@@ -24,7 +24,10 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import ContactoFooter from '../../pages/Home/components/ContactoFooter';
 import FooterTitles from './FooterTitles';
-
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import SettingsIcon from '@mui/icons-material/Settings';
 const drawerWidth = 240;
 
 const roter = [
@@ -33,6 +36,15 @@ const roter = [
   { name: "Residence", link: "/Main/Residence", SVG: <PlayArrowIcon /> },
   { name: "Alarm", link: "/Main/Alarm", SVG: <PlayArrowIcon /> }
 ];
+
+const PageHeaders = [
+  {name: "Contact BioWasted", link:"/Contacto",SVG:<ContactPhoneIcon/>},
+  {name: "Change account", link:"/Main/changeAccount",SVG:<ManageAccountsIcon/>},
+  {name: "Settings", link:"/Main/settings",SVG:<SettingsIcon/>},
+  {name: "Profile", link:"/Main/Profile",SVG:<PermIdentityIcon/> },//El icono lo tengo que pasar a un componente
+]
+
+
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -111,12 +123,11 @@ export default function SideBar() {
   }))
 
 
-  // useEffect(() => {
-  //   console.log(User)
-  //   if (Object.keys(User).length === 0) {
-  //     history('/')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (Object.keys(User).length === 0) {
+      history('/')
+    }
+  }, [])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -146,7 +157,7 @@ export default function SideBar() {
           <List>
             {roter.map((text, index) => (
               <>
-                <Link className={`${pass == 2 ? " bg-orange-300 !important":""}`} to={`${text.link}`} key={`${text.name}-${index}`}>
+                <Link to={`${text.link}`} key={`${text.name}-${index}`}>
                   <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                       sx={{
@@ -159,9 +170,44 @@ export default function SideBar() {
                       <ListItemIcon
                         sx={{
                           minWidth: 0,
+                          zIndex: pass == 2 ? 9999:1201,
                           mr: open ? 3 : 'auto',
                           justifyContent: 'center',
-                          color: "white",
+                          color: pass == 2 ? "Yellow":"white",
+                          '& .MuiSvgIcon-root': { fontSize: '2rem' },
+                        }}
+                      >
+                        {text.SVG}
+                      </ListItemIcon>
+                      <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "white", '& .MuiSvgIcon-root': { fontSize: '2rem' }, whiteSpace: 'normal', }} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+                <Divider />
+              </>
+            ))}
+          </List>
+            {/* Desde aqui son condicionales------------------------------ */}
+          <List className=' block md:hidden'>
+            {PageHeaders.map((text, index) => (
+              <>
+                <Link  to={`${text.link}`} key={`${text.name}-${index}`}>
+                  <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        '& .MuiListItemText-primary': { fontSize: '2rem' },
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          zIndex: pass == 2 ? 9999:1201,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                          color: pass == 1 ? "Yellow":"white",
                           '& .MuiSvgIcon-root': { fontSize: '2rem' },
                         }}
                       >

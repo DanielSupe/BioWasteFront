@@ -19,12 +19,16 @@ const InputB = ({
 
 
   const swalInfo = (info)=>{
-    console.log(info,"infoo")
     Swal.fire({
       icon: 'info',
       title: 'Information',
       text: info,
-      confirmButtonText: 'accept'
+      confirmButtonText: 'accept',
+      customClass: {
+        container: 'z-9999', // ajusta este valor según sea necesario
+        popup: 'z-9999', // ajusta este valor según sea necesario
+        backdrop: 'z-9999', // ajusta este valor según sea necesario
+      },
     });
   }
 

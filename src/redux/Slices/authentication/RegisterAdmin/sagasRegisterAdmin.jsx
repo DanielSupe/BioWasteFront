@@ -25,7 +25,16 @@ function* RegisterAdminProfile(data) {
             Swal.fire({
                 title:"success",
                 icon:"success",
-                text:"account created"
+                text:"account created",
+                didOpen: () => {
+                    const container = document.querySelector('.swal2-container');
+                    const popup = document.querySelector('.swal2-popup');
+                    const backdrop = document.querySelector('.swal2-backdrop');
+                
+                    container.style.zIndex = '9999';
+                    popup.style.zIndex = '9999';
+                    backdrop.style.zIndex = '9999';
+                  }
             })
     } catch (error) {
         console.log(error,"ERRORR")
@@ -33,7 +42,16 @@ function* RegisterAdminProfile(data) {
         Swal.close()
         Swal.fire({
             title:error.response.data.message,
-            icon:"error"
+            icon:"error",
+            didOpen: () => {
+                const container = document.querySelector('.swal2-container');
+                const popup = document.querySelector('.swal2-popup');
+                const backdrop = document.querySelector('.swal2-backdrop');
+            
+                container.style.zIndex = '9999';
+                popup.style.zIndex = '9999';
+                backdrop.style.zIndex = '9999';
+              }
         })
     }
     
@@ -57,7 +75,16 @@ function* ResidenceUserAdmin(data) {
             Swal.fire({
                 title:"success",
                 icon:"success",
-                text:"account created"
+                text:"account created",
+                didOpen: () => {
+                    const container = document.querySelector('.swal2-container');
+                    const popup = document.querySelector('.swal2-popup');
+                    const backdrop = document.querySelector('.swal2-backdrop');
+                
+                    container.style.zIndex = '9999';
+                    popup.style.zIndex = '9999';
+                    backdrop.style.zIndex = '9999';
+                  }
             })
     } catch (error) {
         console.log(error,"ERRORR")
@@ -65,7 +92,16 @@ function* ResidenceUserAdmin(data) {
         Swal.close()
         Swal.fire({
             title:error.response.data.message[0],
-            icon:"error"
+            icon:"error",
+            didOpen: () => {
+                const container = document.querySelector('.swal2-container');
+                const popup = document.querySelector('.swal2-popup');
+                const backdrop = document.querySelector('.swal2-backdrop');
+            
+                container.style.zIndex = '9999';
+                popup.style.zIndex = '9999';
+                backdrop.style.zIndex = '9999';
+              }
         })
     }
 }

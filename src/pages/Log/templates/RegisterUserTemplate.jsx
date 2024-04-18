@@ -69,7 +69,7 @@ const RegisterUserTemplate = () => {
   useEffect(()=>{
     if(exito){
       console.log("Entrooo al register")
-      history('/Inicio')
+      history('/Main')
     }
   },[exito])
 

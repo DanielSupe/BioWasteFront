@@ -123,11 +123,11 @@ export default function SideBar() {
   }))
 
 
-  useEffect(() => {
-    if (Object.keys(User).length === 0) {
-      history('/')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (Object.keys(User).length === 0) {
+  //     history('/')
+  //   }
+  // }, [])
 
   const handleDrawerOpen = () => {
     setOpen(true);

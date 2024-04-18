@@ -3,6 +3,7 @@ import {put, call, takeEvery, takeLatest} from "redux-saga/effects"
 import Swal from "sweetalert2";
 import { RegisterUserAdminFail, RegisterUserAdminSuccess, ResidenceUserAdminFail, ResidenceUserAdminSuccess } from "./RegisterAdminSlice";
 import urlBakend from "../../../../common/contants";
+import { LoginUserSuccess } from "../login/LoginSlice";
 
 
 function* RegisterAdminProfile(data) {
@@ -71,6 +72,8 @@ function* ResidenceUserAdmin(data) {
             "postalCode":postalCodeResidence
             })
           yield put(ResidenceUserAdminSuccess(rep))
+          yield put(LoginUserSuccess(rep))
+          
             Swal.close()
             Swal.fire({
                 title:"success",

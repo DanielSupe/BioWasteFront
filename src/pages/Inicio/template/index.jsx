@@ -38,7 +38,7 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className='w-full h-full p-4 md:p-12 box-border flex flex-col md:flex-row justify-start md:justify-center  items-start md:items-center  bg-cover bg-center bg-no-repeat overflow-auto' style={{ backgroundImage: `url('Images/Main/fondoMain.jpg')` }}>
+    <div className='w-full h-full p-4 md:p-12 box-border flex flex-col md:flex-row justify-start md:justify-center  items-start md:items-center  bg-cover bg-center bg-no-repeat overflow-auto' style={{ backgroundImage: `url('/Images/Main/fondoMain.jpg')` }}>
       <div className={`${pass == 5 ? "z-[1204]":""} h-full min-h-[200px] w-full md:w-1/2 bg-white rounded-lg box-border md:p-3 md:mr-9 flex flex-col mb-1 md:mb-0`}>
         <h3 className=' text-blueMainTtile text-xl '>Monitoring plan</h3>
         <div className=' rounded-lg w-full border-b-2 border-slate-300'/>

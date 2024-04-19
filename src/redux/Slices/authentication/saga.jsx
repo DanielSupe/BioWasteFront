@@ -24,12 +24,8 @@ function* RegisterUserProfile(data) {
                 text:"account created",
                 didOpen: () => {
                     const container = document.querySelector('.swal2-container');
-                    const popup = document.querySelector('.swal2-popup');
-                    const backdrop = document.querySelector('.swal2-backdrop');
                 
                     container.style.zIndex = '9999';
-                    popup.style.zIndex = '9999';
-                    backdrop.style.zIndex = '9999';
                   }
             })
     } catch (error) {
@@ -41,12 +37,8 @@ function* RegisterUserProfile(data) {
             icon:"error",
             didOpen: () => {
                 const container = document.querySelector('.swal2-container');
-                const popup = document.querySelector('.swal2-popup');
-                const backdrop = document.querySelector('.swal2-backdrop');
             
                 container.style.zIndex = '9999';
-                popup.style.zIndex = '9999';
-                backdrop.style.zIndex = '9999';
               }
         })
     }

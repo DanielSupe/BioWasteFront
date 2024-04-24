@@ -8,3 +8,16 @@
   box-sizing: border-box;
   font-family: "Josefin Sans", sans-serif !important;
 }
+/* ESTILOS PARA POPUP SWAL */
+.large-text{
+  font-size: x-large;
+  max-width: 450px !important;
+}
+
+.cancelButtonSwal{
+  background-color: #E28181 !important;
+}
+
+.confirmButtonSwal{
+  background-color: #81E28B !important;
+}

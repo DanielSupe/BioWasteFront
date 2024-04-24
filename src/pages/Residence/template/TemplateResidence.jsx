@@ -1,6 +1,7 @@
 import React from 'react'
 import PlanProgress from '../../Inicio/components/PlanProgress'
 import DeleteIcon from '@mui/icons-material/Delete';
+import Swal from 'sweetalert2';
 const TemplateResidence = () => {
 
   const photoDefeft = "https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg"
@@ -27,6 +28,32 @@ const TemplateResidence = () => {
       case "otra":
         return "/Images/Main/imagePlan_1.png"
     }
+  }
+
+  const deleteUserForAdmin = (id)=>{
+    Swal.fire({
+      text: `¿Are you sure you want \n to delete User #${id}?`,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+      customClass: {
+        popup: 'large-text',
+        cancelButton: "cancelButtonSwal",
+        confirmButton:"confirmButtonSwal" // Aplica la clase de tamaño de fuente al cuadro de diálogo
+      },
+      didOpen: () => {
+        const container = document.querySelector('.swal2-container');
+        container.style.zIndex = '9999';
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        alert("SE ELIMINA EL USER")
+      } 
+      // else if (result.dismiss === Swal.DismissReason.cancel) {
+      //   Swal.fire('Cancelado', 'La eliminación del usuario ha sido cancelada', 'error');
+      // }
+    });
   }
 
   return (
@@ -59,7 +86,7 @@ const TemplateResidence = () => {
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
                         <p className=' text-gray-400 font-medium text-2xl text-center'>{item.racha}</p>
                       </div>
-                      <DeleteIcon className='h-[60%]'/>
+                      <button onClick={()=>{deleteUserForAdmin(item.idUser)}} ><DeleteIcon className='h-[60%] cursor-pointer'/></button>
                     </div>
 
                     

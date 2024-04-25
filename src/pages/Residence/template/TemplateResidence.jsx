@@ -2,9 +2,11 @@ import React from 'react'
 import PlanProgress from '../../Inicio/components/PlanProgress'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
+import { photoDefeft } from '../../../common/contants';
+import { Link } from 'react-router-dom';
 const TemplateResidence = () => {
 
-  const photoDefeft = "https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg"
+  
 
   const listPrueba = [
     {urlFoto:"",name:"User",idUser:"1",apt:"100",typePlan:"water",progressPlan:"55",racha:"23"},
@@ -64,7 +66,7 @@ const TemplateResidence = () => {
             <div className='h-auto w-full flex-grow overflow-auto flex flex-col justify-start items-center'>
               {listPrueba.map((item)=>{
                 return(
-                  <div className='w-full h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.name}-${item.idUser}`}>
+                  <Link to={`/Main/Residence/User/${item.idUser}`} className='w-full cursor-pointer h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.name}-${item.idUser}`}>
                     {/* primer cuadro------------------------ */}
                     <div className='flex h-full  justify-center items-center box-border'>
                       <img className=' h-[40px] md:h-[60px] rounded-[50%] md:mr-3' src={item.urlFoto ? item.urlFoto : photoDefeft}/>
@@ -90,7 +92,7 @@ const TemplateResidence = () => {
                     </div>
 
                     
-                  </div>
+                  </Link>
                 )
               })}
             </div>

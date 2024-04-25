@@ -11,6 +11,7 @@ export default {
         blueBioWaste: "#9DC4C4",
         greenBioWaste: "#81e28b",
         BlueHeader: "#a0c4c4",
+        grayUser: "#F5F5F5"
       },
       colors: {
         GreenRecycle: "#006838",

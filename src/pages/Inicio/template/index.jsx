@@ -6,6 +6,7 @@ import Popup from '../../../common/components/IpopupB'
 import Tutorial from '../components/Tutorial'
 import { useDispatch, useSelector } from 'react-redux'
 import { NextPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
+import RachaUser from '../components/RachaUser'
 
 const TemplateInicio = () => {
   const dispatch = useDispatch();
@@ -52,9 +53,8 @@ useEffect(()=>{
      {/* Segundo cuadroooo -----------------------------------------*/}
       <div className='h-full min-h-[200px] w-full md:w-1/3 rounded-lg flex flex-col gap-4'>
 
-        <div className={`${pass == 3 ? "z-[1204]":""}  w-full h-1/3 rounded-lg bg-custom-gradient flex justify-center items-center`}>
-          <img className=' min-h-[80%] max-h-[100%] box-border p-5' src='Images/Main/LlamaMain.png'/>
-          <p className=' font-bold text-6xl text-white'>100{/* Aqui va la variable que contiene la racha   */}</p>
+        <div className='w-full h-1/3'>
+          <RachaUser pass={pass} racha={100}/>
         </div>
 
 

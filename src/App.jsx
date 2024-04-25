@@ -8,6 +8,7 @@ import { store } from './redux/store';
 import TemplateInicio from './pages/Inicio/template';
 import SideBar from './common/components/SideBar';
 import TemplateResidence from './pages/Residence/template/TemplateResidence';
+import UserInfo from './pages/Residence/template/UserInfo';
 const App = () => {
 
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route index element={<TemplateInicio />} />
           <Route path="/Main/MonitorinPlan" element={<TemplateInicio />} />
           <Route path="/Main/Residence" element={<TemplateResidence/>} />
+          <Route path="/Main/Residence/User/:userId" element={<UserInfo/>} />
           <Route path="/Main/Alarm" element={<TemplateInicio />} />
           {/* Otras rutas hijas aquí */}
         </Route>

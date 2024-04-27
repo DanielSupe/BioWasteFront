@@ -5,9 +5,9 @@ import PlanProgress from './PlanProgress';
 const MonitoringPlan = ({ResidenceList}) => {
 
     const list = [
-        { title: "Plan #1", urlImage: "Images/Main/imagePlan_1.png", progress: 50 },
-        { title: "Plan #2", urlImage: "Images/Main/imagePlan_2.png", progress: 20 },
-        { title: "Plan #3", urlImage: "Images/Main/imagePlan_3.png", progress: 90 },
+        { title: "Plan #1", urlImage: "/Images/Main/imagePlan_1.png", progress: 50 },
+        { title: "Plan #2", urlImage: "/Images/Main/imagePlan_2.png", progress: 20 },
+        { title: "Plan #3", urlImage: "/Images/Main/imagePlan_3.png", progress: 90 },
     ]
 
 

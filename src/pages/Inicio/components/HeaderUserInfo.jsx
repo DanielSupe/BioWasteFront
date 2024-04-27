@@ -32,11 +32,12 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
       }
 
     return (
-        <div className='h-full w-full bg-grayUser rounded-xl flex items-end p-4 box-border'>
-            <img className=' min-h-[70%] max-h-[90%] rounded-[50%]' src={urlImage ? urlImage : photoDefeft} />
-            <div className='h-full flex flex-col items-start justify-end max-w-[50%] box-border ml-6'>
+        <div className='h-full w-full bg-grayUser rounded-xl flex items-center md:items-end p-4 box-border'>
+            <img className='min-h-[30%] max-h-[50%] md:min-h-[70%] md:max-h-[90%] rounded-[50%]' src={urlImage ? urlImage : photoDefeft} />
+            <div className='h-full flex flex-col items-start justify-center md:justify-end max-w-[50%] box-border ml-6'>
                 <div className='flex'>
-                    <p className=' text-gray-400 font-medium text-5xl text-center max-w-[70%]'>{nameUser}</p>
+                {/* max-w-[10%] overflow-hidden whitespace-nowra */}
+                    <p className=' text-gray-400 font-medium text-5xl text-center'>{nameUser}</p>  
                     <p className=' text-gray-400 font-medium text-5xl text-center'>#{idUser}</p>
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>

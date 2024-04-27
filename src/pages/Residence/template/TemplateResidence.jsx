@@ -88,7 +88,7 @@ const TemplateResidence = () => {
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
                         <p className=' text-gray-400 font-medium text-2xl text-center'>{item.racha}</p>
                       </div>
-                      <button onClick={()=>{deleteUserForAdmin(item.idUser)}} ><DeleteIcon className='h-[60%] cursor-pointer'/></button>
+                      <button onClick={()=>{deleteUserForAdmin(item.idUser)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>
                     </div>
 
                     

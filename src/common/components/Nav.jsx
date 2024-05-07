@@ -34,7 +34,7 @@ const NavB = ({handlePopUp}) => {
 
 
   return (
-    <div className='flex w-full justify-start items-center z-[2000]'>
+    <div className='flex w-full justify-start items-center'>
       <div className='h-full'>
         <IconBioWaste Log={Object.keys(User).length === 0  ? false:true}/>
       </div>

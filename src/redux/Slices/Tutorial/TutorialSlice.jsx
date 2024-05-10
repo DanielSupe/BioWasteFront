@@ -2,7 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    pass: 0
+    pass: 0,
+    TutorialSuccest: false
 };
 
 export const TutorialSlice = createSlice({
@@ -12,9 +13,13 @@ export const TutorialSlice = createSlice({
         NextPass: (state)=>{
             state.pass = state.pass +1;
         },
+        ReiniciarPass: (state) =>{
+            state.pass = 0;
+            state.TutorialSuccest = true;
+        }
         
     }
 })
 
-export const { NextPass} = TutorialSlice.actions;
+export const { NextPass,ReiniciarPass} = TutorialSlice.actions;
 export default TutorialSlice.reducer

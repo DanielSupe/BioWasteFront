@@ -5,14 +5,15 @@ import MonitoringPlan from '../components/MonitoringPlan'
 import Popup from '../../../common/components/IpopupB'
 import Tutorial from '../components/Tutorial'
 import { useDispatch, useSelector } from 'react-redux'
-import { NextPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
+import { NextPass, ReiniciarPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
 import RachaUser from '../components/RachaUser'
 
 const TemplateInicio = () => {
   const dispatch = useDispatch();
 
-  const { pass,exitoAdmin,exitoUser} = useSelector((state) => ({
+  const { pass,exitoAdmin,exitoUser,TutorialSuccest} = useSelector((state) => ({
     pass: state.Tutorial.pass,
+    TutorialSuccest: state.Tutorial.TutorialSuccest,
     exitoAdmin: state.RegisterAdmin.exito,
     exitoUser: state.Register.exito,
 
@@ -22,6 +23,7 @@ const TemplateInicio = () => {
 
   const handlePopUp = ()=>{
     setPopUpTutorial(!popUpTutorial);
+    dispatch(ReiniciarPass());
 }
 
 const nextPassTutorial = ()=>{
@@ -33,7 +35,7 @@ const nextPassTutorial = ()=>{
 }
 
 useEffect(()=>{
-  if(exitoAdmin || exitoUser){
+  if((exitoAdmin || exitoUser) && !TutorialSuccest ){
     handlePopUp()
   }
 },[])
@@ -53,7 +55,7 @@ useEffect(()=>{
      {/* Segundo cuadroooo -----------------------------------------*/}
       <div className='h-full min-h-[200px] w-full md:w-1/3 rounded-lg flex flex-col gap-4'>
 
-        <div className='w-full h-1/3'>
+        <div className={`w-full h-1/3 ${pass == 3 ? "z-[1204]":""}`}>
           <RachaUser pass={pass} racha={100}/>
         </div>
 

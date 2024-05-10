@@ -31,20 +31,21 @@ const RegisterUserTemplate = () => {
     { title: "Username", type: "text", nameKey: "Name" },
     { title: "Email", type: "email", nameKey: "Email" },
     { title: "Phone number", type: "number", nameKey: "phoneNumber" },
+    { title: "Apt", type: "number", nameKey: "apt" },
     { title: "Password", type: "password", nameKey: "Password" },
     { title: "Retype your password", type: "password", nameKey: "confirmPassword", info: "Passwords must contain at least one number and one special character, include upper and lower case letters, be at least 8 characters long, and not contain or match your email address." },
   ]
 
 
-  const[form, setForm] = useState({Email:"",Password:"",confirmPassword:"",Name:"",phoneNumber:""})
+  const[form, setForm] = useState({Email:"",Password:"",confirmPassword:"",Name:"",phoneNumber:"",apt:""})
   const [remember,setRemember] = useState(false)
 
   const [disabled,setDisabled] = useState(true)
 
   useEffect(()=>{
     console.log(form,"FORMM")
-    const {Email,Password,confirmPassword,Name,phoneNumber} = form;
-    if((Email != "" && Name != "" && Password != "" && confirmPassword != "" && phoneNumber != "" && remember == true) && Password == confirmPassword){
+    const {Email,Password,confirmPassword,Name,phoneNumber,apt} = form;
+    if((Email != "" && Name != "" && Password != "" && confirmPassword != "" && phoneNumber != "" && remember == true && apt ) && Password == confirmPassword){
       setDisabled(false)
     }else{
       setDisabled(true)

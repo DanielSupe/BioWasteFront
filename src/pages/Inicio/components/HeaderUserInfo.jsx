@@ -32,19 +32,19 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
       }
 
     return (
-        <div className='h-full w-full bg-grayUser rounded-xl flex items-center md:items-end p-4 box-border'>
+      <div className='h-full w-full bg-grayUser rounded-xl flex items-center md:items-end p-4 box-border relative'>
             <img className='min-h-[30%] max-h-[50%] md:min-h-[70%] md:max-h-[90%] rounded-[50%]' src={urlImage ? urlImage : photoDefeft} />
             <div className='h-full flex flex-col items-start justify-center md:justify-end max-w-[50%] box-border ml-6'>
-                <div className='flex'>
+                <div className='flex flex-col md:flex-row'>
                 {/* max-w-[10%] overflow-hidden whitespace-nowra */}
                     <p className=' text-gray-400 font-medium text-5xl text-center'>{nameUser}</p>  
-                    <p className=' text-gray-400 font-medium text-5xl text-center'>#{idUser}</p>
+                    <p className=' text-gray-400 font-medium text-lg text-center max-w-[150px] truncate'>#{idUser}</p>
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>
             </div>
 
-            <button onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>
-        </div>
+            <button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>
+      </div>
     )
 }
 

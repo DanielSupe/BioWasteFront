@@ -24,8 +24,8 @@ const UserInfo = () => {
 
                 </div>
 
-                <div className='w-full flex-grow p-4 box-border flex flex-row'>
-                    <div className='w-3/5 flex flex-col h-full bg-grayUser box-border p-4 rounded-xl mr-4'>
+                <div className='w-full flex-grow p-4 box-border flex flex-col md:flex-row'>
+                    <div className='w-full md:w-3/5 flex flex-col h-full bg-grayUser box-border p-4 rounded-xl mr-4'>
                         <h3 className=' text-blueMainTtile text-xl '>Monitoring plan</h3>
                         <div className=' rounded-lg w-full border-b-2 border-slate-300' />
 
@@ -34,7 +34,7 @@ const UserInfo = () => {
                         </div>
                     </div>
 
-                    <div className=' flex-grow h-full'>
+                    <div className=' w-full md:flex-grow min-h-[400px] md:h-full'>
                         <CommentsUser/>
                     </div>
                 </div>

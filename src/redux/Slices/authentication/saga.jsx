@@ -6,7 +6,7 @@ import { RegisterUserFail, RegisterUserSuccess } from "./RegisterSlice";
 import { LoginUserSuccess } from "./login/LoginSlice";
 
 function* RegisterUserProfile(data) {
-    const {Email,Name,confirmPassword,phoneNumber,Password} = data.payload
+    const {Email,Name,confirmPassword,phoneNumber,Password,apt} = data.payload
     try {
         const rep = yield axios.post(`${urlBakend}/api/registrer`,{
             "username":Name,
@@ -14,6 +14,7 @@ function* RegisterUserProfile(data) {
             "phoneNumber":phoneNumber,
             "password":Password,
             "confirmPassword":confirmPassword,
+            "apartment":apt
             })
           yield put(RegisterUserSuccess(rep))
           yield put(LoginUserSuccess(rep))

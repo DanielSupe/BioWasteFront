@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import PlanProgress from '../../Inicio/components/PlanProgress'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import { photoDefeft } from '../../../common/contants';
 import { Link } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { GetUser } from '../../../redux/Slices/Users/UserSlice';
 const TemplateResidence = () => {
+
+  const dispatch = useDispatch();
+
+  const { data} = useSelector((state) => ({
+    data: state.Users.data,
+
+
+}))
+
+const [ListUser,setListUser] = useState([]) 
 
   
 
@@ -29,8 +41,23 @@ const TemplateResidence = () => {
         return "/Images/Main/imagePlan_3.png"
       case "otra":
         return "/Images/Main/imagePlan_1.png"
+      default:
+        return "/Images/Main/imagePlan_1.png"
     }
   }
+
+  useEffect(()=>{
+    dispatch(GetUser())
+  },[])
+
+  
+useEffect(() => {
+  setListUser(data);
+}, [data]);
+
+
+
+
 
   const deleteUserForAdmin = (id)=>{
     Swal.fire({
@@ -64,37 +91,38 @@ const TemplateResidence = () => {
             <h3 className=' text-blueMainTtile text-xl '> Residence</h3>
             <div className=' rounded-lg w-full border-b-2 border-slate-300'/>
             <div className='h-auto w-full flex-grow overflow-auto flex flex-col justify-start items-center'>
-              {listPrueba.map((item)=>{
+              {ListUser.length > 0 ?
+              (ListUser.map((item)=>{
                 return(
-                  <Link to={`/Main/Residence/User/${item.idUser}`} className='w-full cursor-pointer h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.name}-${item.idUser}`}>
+                  <Link to={`/Main/Residence/User/${item._id}`} className='w-full cursor-pointer h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.username}-${item._id}`}>
                     {/* primer cuadro------------------------ */}
                     <div className='flex h-full  justify-center items-center box-border'>
                       <img className=' h-[40px] md:h-[60px] rounded-[50%] md:mr-3' src={item.urlFoto ? item.urlFoto : photoDefeft}/>
-                    <div className='flex flex-col items-start'>
-                      <div className='flex'>
-                        <p className=' text-gray-400 font-medium text-xl text-center max-w-[70%]'>{item.name}</p>
-                        <p className=' text-gray-400 font-medium text-xl text-center'>#{item.idUser}</p>
+                    <div className='flex flex-col justify-start items-start'>
+                      <div className='flex flex-col items-start'>
+                        <p className=' text-gray-400 font-medium text-xl text-center max-w-[70%]'>{item.username}</p>
+                        <p className=' text-gray-400 font-medium text-xl text-center max-w-[100px] truncate'>#{item._id}</p>
                       </div>
-                      <p className=' text-gray-400 font-medium text-xl text-center'>Apt {item.apt}</p>
+                      <p className=' text-gray-400 font-medium text-xl text-center'>Apt {item.apartment}</p>
                     </div>
                     </div>
                     {/* segundo cuadro------------------------------------ */}
                     <div className='flex justify-center items-center h-full max-w-[50%] flex-grow overflow-hidden box-border'>
-                      <PlanProgress urlImage={SelectPhotoPlan(item.typePlan)} progress={item.progressPlan} ResidenceList={true}  title={"plan with greatest progress"}/>
+                      <PlanProgress urlImage={SelectPhotoPlan(item?.plan?.planType)} progress={item?.plan?.progress} ResidenceList={true}  title={"plan with greatest progress"}/>
                     </div>
 
                     <div className='h-full  flex justify-center items-center box-border'>
                       <div className='h-full  flex justify-between items-center'>
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
-                        <p className=' text-gray-400 font-medium text-2xl text-center'>{item.racha}</p>
+                        <p className=' text-gray-400 font-medium text-2xl text-center'>{item.plan?.streak}</p>
                       </div>
-                      <button onClick={()=>{deleteUserForAdmin(item.idUser)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>
+                      <button onClick={()=>{deleteUserForAdmin(item._id)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>
                     </div>
 
                     
                   </Link>
                 )
-              })}
+              })):null}
             </div>
         </div>
   </div>

@@ -34,7 +34,6 @@ const roter = [
   { name: "Menu", link: "/Main", SVG: <PlayArrowIcon /> },
   { name: "Monitorin Plan", link: "/Main/MonitorinPlan", SVG: <PlayArrowIcon /> },
   { name: "Residence", link: "/Main/Residence", SVG: <PlayArrowIcon /> },
-  { name: "Alarm", link: "/Main/Alarm", SVG: <PlayArrowIcon /> }
 ];
 
 const PageHeaders = [

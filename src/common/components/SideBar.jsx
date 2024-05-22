@@ -28,6 +28,7 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { FaSignOutAlt } from "react-icons/fa";
 const drawerWidth = 240;
 
 const roter = [
@@ -41,6 +42,7 @@ const PageHeaders = [
   {name: "Change account", link:"/Main/changeAccount",SVG:<ManageAccountsIcon/>},
   {name: "Settings", link:"/Main/settings",SVG:<SettingsIcon/>},
   {name: "Profile", link:"/Main/Profile",SVG:<PermIdentityIcon/> },//El icono lo tengo que pasar a un componente
+  {name: "Salir",SVG: <FaSignOutAlt/> , link:"/Logout"},
 ]
 
 
@@ -122,11 +124,11 @@ export default function SideBar() {
   }))
 
 
-  // useEffect(() => {
-  //   if (Object.keys(User).length === 0) {
-  //     history('/')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if(!localStorage.getItem("Autentication")){
+      history('/')
+    }
+  }, [])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -156,7 +158,7 @@ export default function SideBar() {
           <List>
             {roter.map((text, index) => (
               <>
-                <Link to={`${text.link}`} key={`${text.name}-${index}`}>
+                <Link to={`${text.link}`} key={`${text.name}-${index}-${text.link}`}>
                   <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                       sx={{
@@ -190,7 +192,7 @@ export default function SideBar() {
           <List className=' block md:hidden'>
             {PageHeaders.map((text, index) => (
               <>
-                <Link  to={`${text.link}`} key={`${text.name}-${index}`}>
+                <Link  to={`${text.link}`} key={`${text.name}-${index}-9`}>
                   <ListItem disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                       sx={{

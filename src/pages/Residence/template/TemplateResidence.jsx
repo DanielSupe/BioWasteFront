@@ -17,7 +17,7 @@ const TemplateResidence = () => {
 }))
 
 const [ListUser,setListUser] = useState([]) 
-
+const [User,setUser] = useState({}) 
   
 
   const listPrueba = [
@@ -47,6 +47,8 @@ const [ListUser,setListUser] = useState([])
   }
 
   useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("Autentication"));
+    setUser(user);
     dispatch(GetUser())
   },[])
 
@@ -101,7 +103,7 @@ useEffect(() => {
                     <div className='flex flex-col justify-start items-start'>
                       <div className='flex flex-col items-start'>
                         <p className=' text-gray-400 font-medium text-xl text-center max-w-[70%]'>{item.username}</p>
-                        <p className=' text-gray-400 font-medium text-xl text-center max-w-[100px] truncate'>#{item._id}</p>
+                        {/* <p className=' text-gray-400 font-medium text-xl text-center max-w-[100px] truncate'>#{item._id}</p> */}
                       </div>
                       <p className=' text-gray-400 font-medium text-xl text-center'>Apt {item.apartment}</p>
                     </div>
@@ -116,7 +118,8 @@ useEffect(() => {
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
                         <p className=' text-gray-400 font-medium text-2xl text-center'>{item.plan?.streak}</p>
                       </div>
-                      <button onClick={()=>{deleteUserForAdmin(item._id)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>
+                      {!User.userType == "user" ? (<button onClick={()=>{deleteUserForAdmin(item._id)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>):null}
+                      
                     </div>
 
                     

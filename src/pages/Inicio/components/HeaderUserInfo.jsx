@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { photoDefeft } from '../../../common/contants';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
+
+  const [User,setUser] = useState({}) 
+
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("Autentication"));
+    setUser(user);
+
+  },[])
 
     const deleteUserForAdmin = (id)=>{
         Swal.fire({
@@ -38,12 +47,13 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
                 <div className='flex flex-col md:flex-row'>
                 {/* max-w-[10%] overflow-hidden whitespace-nowra */}
                     <p className=' text-gray-400 font-medium text-5xl text-center'>{nameUser}</p>  
-                    <p className=' text-gray-400 font-medium text-lg text-center max-w-[150px] truncate'>#{idUser}</p>
+                    {/* <p className=' text-gray-400 font-medium text-lg text-center max-w-[150px] truncate'>#{idUser}</p> */}
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>
             </div>
+            {!User.userType == "user" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>):null}
 
-            <button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>
+            
       </div>
     )
 }

@@ -10,6 +10,7 @@ import SideBar from './common/components/SideBar';
 import TemplateResidence from './pages/Residence/template/TemplateResidence';
 import UserInfo from './pages/Residence/template/UserInfo';
 import TemplateLearnMore from './pages/learnMore/template/TemplateLearnMore';
+import Logout from './pages/Inicio/components/Logout';
 const App = () => {
 
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<TemplateHome/>} />
         <Route path="/learnMore" element={<TemplateLearnMore/>} />
         <Route path="/RegisterAdmin" element={<RegisterAdminTemplate/>} />
+        <Route path="/Logout" element={<Logout/>} />
         <Route path="/RegisterUser" element={<RegisterUserTemplate/>} />
         {/* <Route path="/Inicio" element={<TemplateInicio/>} /> */}
         <Route path="/Main" element={<SideBar/>}>

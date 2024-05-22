@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import RachaUser from '../../Inicio/components/RachaUser';
 import HeaderUserInfo from '../../Inicio/components/HeaderUserInfo';
@@ -7,6 +7,14 @@ import MonitoringPlan from '../../Inicio/components/MonitoringPlan';
 import CommentsUser from '../../Inicio/components/CommentsUser';
 const UserInfo = () => {
     const { userId } = useParams();
+
+    const [User,setUser] = useState({}) 
+
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem("Autentication"));
+        setUser(user);
+
+    },[])
 
 
     return (
@@ -34,9 +42,12 @@ const UserInfo = () => {
                         </div>
                     </div>
 
-                    <div className=' w-full md:flex-grow min-h-[400px] md:h-full'>
+                    {!User.userType == "user" ? (
+                        <div className=' w-full md:flex-grow min-h-[400px] md:h-full'>
                         <CommentsUser/>
                     </div>
+                    ):null}
+
                 </div>
 
 

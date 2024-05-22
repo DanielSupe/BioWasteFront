@@ -8,7 +8,7 @@ const OptionsRegister = () => {
         <span className=' text-3xl lg:text-4xl'>What type of account do you want to create?</span>
         <div className='flex flex-col sm:flex-row justify-between items-center sm:items-start md:items-start mt-5'>
             {/* User   lg:h-[70vh] w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] */}
-            <Link to={'RegisterUser'} className=' w-[250px]'>   
+            <Link to={'/RegisterUser'} className=' w-[250px]'>   
                 <InfoRectangle title='User' description='As a user you can see your own activity on the page, see the activity of your colleagues, receive support from the administrator to complete your tasks and improve your knowledge about biodegradable waste.' urlImage='Images/Home/imagen_5User.png'/>
             </Link>
 

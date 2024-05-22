@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
   const HeroHome = ({ description, title, menu}) => {
     return (
@@ -13,7 +14,7 @@ import PropTypes from 'prop-types';
             {menu ? (<div className=' flex flex-col justify-center items-center'>
                 <p className=' font-medium text-xl lg:text-3xl'>You want to know more?</p>
 
-                <p className='px-7 py-2 bg-blueBioWaste text-lg font-bold rounded-3xl mt-2 lg:mt-4'>LEARN MORE</p>
+                <Link to={'/learnMore'}><p className='px-7 py-2 bg-blueBioWaste text-lg font-bold rounded-3xl mt-2 lg:mt-4'>LEARN MORE</p></Link>
 
             </div>):null}
         </div>

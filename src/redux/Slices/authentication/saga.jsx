@@ -8,7 +8,7 @@ import { LoginUserSuccess } from "./login/LoginSlice";
 function* RegisterUserProfile(data) {
     const {Email,Name,confirmPassword,phoneNumber,Password,apt} = data.payload
     try {
-        const rep = yield axios.post(`${urlBakend}/api/registrer`,{
+        const rep = yield axios.post(`${urlBakend}/api/registerUser`,{
             "username":Name,
             "email":Email,
             "phoneNumber":phoneNumber,
@@ -30,7 +30,6 @@ function* RegisterUserProfile(data) {
                   }
             })
     } catch (error) {
-        console.log(error,"ERRORR")
         yield put(RegisterUserFail(error))
         Swal.close()
         Swal.fire({

@@ -14,7 +14,6 @@ const LinkNav = [
 const inPage = [
   {title: "Home", link:"/Main"},
   {title: "Contact BioWasted", link:"/Contacto"},
-  {title: "Change account", link:"/Main/changeAccount"},
   {title: "Settings", link:"/Main/settings"},
   {title: <PermIdentityIcon/> , link:"/Main/Profile"},//El icono lo tengo que pasar a un componente
   {title: <FaSignOutAlt/> , link:"/Logout"},
@@ -45,9 +44,9 @@ useEffect(() => {
 
   return (
     <div className='flex w-full justify-start items-center'>
-      <div className='h-full'>
+      <Link to={'/'} className='h-full'>
         <IconBioWaste Log={!user  ? false:true}/>
-      </div>
+      </Link>
       <div className='hidden md:block ml-auto'>
         <div className='h-full flex justify-center items-center '>
           {!user ? 

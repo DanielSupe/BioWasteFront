@@ -20,7 +20,8 @@ export default {
         blueMainTtile: "#9DC4C4",
       },
       borderColor: {
-        grayBioWaste: "#A8A8A8"
+        grayBioWaste: "#A8A8A8",
+        grayTenue: "F5F5F5"
       }
     },
   },

@@ -3,12 +3,14 @@ import PlanProgress from '../../Inicio/components/PlanProgress'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import { photoDefeft } from '../../../common/contants';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { GetUser } from '../../../redux/Slices/Users/UserSlice';
+import { DeleteUser, GetUser } from '../../../redux/Slices/Users/UserSlice';
+import { showProgress } from '../../../helpers/swals';
 const TemplateResidence = () => {
 
   const dispatch = useDispatch();
+  const history = useNavigate()
 
   const { data} = useSelector((state) => ({
     data: state.Users.data,
@@ -49,7 +51,21 @@ const [User,setUser] = useState({})
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("Autentication"));
     setUser(user);
-    dispatch(GetUser())
+    if(user.residence){
+      dispatch(GetUser())
+    }else{
+      Swal.fire({
+        title:"No residence",
+        icon:"error",
+        text:"first add a residence",
+        didOpen: () => {
+            const container = document.querySelector('.swal2-container');
+        
+            container.style.zIndex = '9999';
+          }
+    })
+    }
+
   },[])
 
   
@@ -61,9 +77,9 @@ useEffect(() => {
 
 
 
-  const deleteUserForAdmin = (id)=>{
+  const deleteUserForAdmin = (id,name)=>{
     Swal.fire({
-      text: `¿Are you sure you want \n to delete User #${id}?`,
+      text: `¿Are you sure you want \n to delete ${name} #${id}?`,
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
@@ -79,7 +95,9 @@ useEffect(() => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        alert("SE ELIMINA EL USER")
+        showProgress()
+        dispatch(DeleteUser(id))
+        history('/Main/Residence')
       } 
       // else if (result.dismiss === Swal.DismissReason.cancel) {
       //   Swal.fire('Cancelado', 'La eliminación del usuario ha sido cancelada', 'error');
@@ -118,7 +136,7 @@ useEffect(() => {
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
                         <p className=' text-gray-400 font-medium text-2xl text-center'>{item.plan?.streak}</p>
                       </div>
-                      {!User.userType == "user" ? (<button onClick={()=>{deleteUserForAdmin(item._id)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>):null}
+                      {User.userType == "admin" ? (<button onClick={()=>{deleteUserForAdmin(item._id,item.username)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>):null}
                       
                     </div>
 

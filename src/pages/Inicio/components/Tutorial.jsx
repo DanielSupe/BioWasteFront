@@ -8,9 +8,6 @@ const Tutorial = () => {
 
     }))
 
-    useEffect(() => {
-        console.log(pass, "pasooo")
-    }, [pass])
 
     return (
         <>

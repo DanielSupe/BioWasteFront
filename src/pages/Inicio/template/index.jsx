@@ -7,15 +7,19 @@ import Tutorial from '../components/Tutorial'
 import { useDispatch, useSelector } from 'react-redux'
 import { NextPass, ReiniciarPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
 import RachaUser from '../components/RachaUser'
+import { GetUser } from '../../../redux/Slices/Users/UserSlice'
+import { reinicioExitoAdmin } from '../../../redux/Slices/authentication/RegisterAdmin/RegisterAdminSlice'
+import { reinicioExitoUser } from '../../../redux/Slices/authentication/RegisterSlice'
 
 const TemplateInicio = () => {
   const dispatch = useDispatch();
 
-  const { pass,exitoAdmin,exitoUser,TutorialSuccest} = useSelector((state) => ({
+  const { pass,exitoAdmin,exitoUser,TutorialSuccest,listUser} = useSelector((state) => ({
     pass: state.Tutorial.pass,
     TutorialSuccest: state.Tutorial.TutorialSuccest,
     exitoAdmin: state.RegisterAdmin.exito,
     exitoUser: state.Register.exito,
+    listUser: state.Users.data,
 
 }))
 
@@ -35,8 +39,11 @@ const nextPassTutorial = ()=>{
 }
 
 useEffect(()=>{
+  dispatch(GetUser())
   if((exitoAdmin || exitoUser) && !TutorialSuccest ){
     handlePopUp()
+    dispatch(reinicioExitoAdmin())
+    dispatch(reinicioExitoUser())
   }
 },[])
 
@@ -67,7 +74,7 @@ useEffect(()=>{
 
 
           <div className='h-auto flex-grow w-full flex flex-col justify-start items-center overflow-auto box-border p-3'>
-            <ListadoUsuarios/>
+            <ListadoUsuarios list={listUser}/>
           </div>
         </div>
 

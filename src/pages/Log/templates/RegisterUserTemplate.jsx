@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormB from '../../../common/components/FormB'
 import { RegisterUser } from '../../../redux/Slices/authentication/RegisterSlice';
 import { showProgress } from '../../../helpers/swals';
+import { getUser } from '../../../helpers/tools';
 
 const RegisterUserTemplate = () => {
 
@@ -43,7 +44,6 @@ const RegisterUserTemplate = () => {
   const [disabled,setDisabled] = useState(true)
 
   useEffect(()=>{
-    console.log(form,"FORMM")
     const {Email,Password,confirmPassword,Name,phoneNumber,apt} = form;
     if((Email != "" && Name != "" && Password != "" && confirmPassword != "" && phoneNumber != "" && remember == true && apt ) && Password == confirmPassword){
       setDisabled(false)
@@ -57,9 +57,6 @@ const RegisterUserTemplate = () => {
   };
 
 
-  useEffect(()=>{
-    console.log(remember,"aquu")
-  },[remember])
 
 
   const createUser = ()=>{
@@ -69,7 +66,6 @@ const RegisterUserTemplate = () => {
 
   useEffect(()=>{
     if(exito){
-      console.log("Entrooo al register")
       history('/Main')
     }
   },[exito])

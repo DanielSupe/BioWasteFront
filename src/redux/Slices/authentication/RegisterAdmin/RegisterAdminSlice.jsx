@@ -21,6 +21,9 @@ export const RegisterAdminSlice = createSlice({
         RegisterUserAdmin: (state,action)=>{
             state.Loading = true;
         },
+        reinicioExitoAdmin: (state,action)=>{
+            state.exito = false;
+        },
         RegisterUserAdminSuccess: (state,action)=>{
             state.UserCreate = action.payload
             state.Loading = false;
@@ -46,5 +49,5 @@ export const RegisterAdminSlice = createSlice({
     }
 })
 
-export const { RegisterUserAdmin, RegisterUserAdminSuccess, RegisterUserAdminFail,ResidenceUserAdmin,ResidenceUserAdminSuccess,ResidenceUserAdminFail} = RegisterAdminSlice.actions;
+export const { RegisterUserAdmin, RegisterUserAdminSuccess, RegisterUserAdminFail,ResidenceUserAdmin,ResidenceUserAdminSuccess,ResidenceUserAdminFail,reinicioExitoAdmin} = RegisterAdminSlice.actions;
 export default RegisterAdminSlice.reducer

@@ -35,7 +35,6 @@ const CreateResidence = ({handleChange,list,form}) => {
 
   useEffect(()=>{
     if(Residenceexito){
-      console.log("Entrooo al historyy")
       history('/Main')
     }
   },[Residenceexito])

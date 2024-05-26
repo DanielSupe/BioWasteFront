@@ -1,6 +1,6 @@
 import React from 'react'
-
-const ListadoUsuarios = () => {
+import PropTypes from 'prop-types';
+const ListadoUsuarios = ({list}) => {
 
     const photoDefeft = "https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg"
 
@@ -15,14 +15,14 @@ const ListadoUsuarios = () => {
 
   return (
     <>
-        {listaprueba.map((user,index)=>{
+        {list.map((user,index)=>{
             return(
-                <div className='w-full h-auto flex justify-around items-center box-border p-1 border-b-4 border-slate-300' key={`${user.NameUser}-${index}`}>
-                    <img className='w-[45px] h-[45px] rounded-[50%]' src={user.urlFoto != "" ? user.urlFoto : photoDefeft}/>
-                    <p className=' text-gray-400 font-medium text-xl w-1/3 text-center'>{user.NameUser} #{user.id}</p>
+                <div className='w-full h-auto flex justify-around items-center box-border p-1 border-b-4 border-slate-300' key={`${user.username}-${index}`}>
+                    <img className='w-[45px] h-[45px] rounded-[50%]' src={user.urlFoto ? user.urlFoto : photoDefeft}/>
+                    <p className=' text-gray-400 font-medium text-xl w-1/3 text-center'>{user.username}</p>
                     <div className='flex justify-center items-center h-full'>
                         <img className=' min-h-[35px] max-h-[45px]' src='Images/Main/LlamaMain.png'/>
-                        <p className='text-gray-400 font-medium text-xl'>{user.racha}</p>
+                        <p className='text-gray-400 font-medium text-xl'>{user.plan?.streak}</p>
                     </div>
                 </div>
             )
@@ -31,5 +31,9 @@ const ListadoUsuarios = () => {
     </>
   )
 }
+
+ListadoUsuarios.propTypes = {
+    list:PropTypes.any.isRequired
+};
 
 export default ListadoUsuarios

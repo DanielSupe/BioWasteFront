@@ -79,7 +79,6 @@ const RegisterAdminTemplate = () => {
 
 
   useEffect(()=>{
-    console.log(form,"form")
     const {Email,Username,Password,confirmPassword,firstName,lastName,phoneNumber,address,city,province,postalCode,verify} = form;
     if((Email != "" && Username != "" && Password != "" && confirmPassword != "" && firstName!= "" && lastName != "" && phoneNumber!= "" && address != "" && city != "" && province != "" && postalCode != "") && Password === confirmPassword && verify){
       setDisabled(false)

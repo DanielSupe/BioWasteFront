@@ -9,7 +9,7 @@ import { LoginUserSuccess } from "../login/LoginSlice";
 function* RegisterAdminProfile(data) {
     const {Email,firstName,lastName,address,city,province,postalCode,Username,confirmPassword,phoneNumber,Password} = data.payload
     try {
-        const rep = yield axios.post(`${urlBakend}/api/adminRegister`,{
+        const rep = yield axios.post(`${urlBakend}/api/registerAdmin`,{
             "username":Username,
             "email":Email,
             "phoneNumber":phoneNumber,
@@ -38,7 +38,6 @@ function* RegisterAdminProfile(data) {
                   }
             })
     } catch (error) {
-        console.log(error,"ERRORR")
         yield put(RegisterUserAdminFail(error))
         Swal.close()
         Swal.fire({
@@ -60,16 +59,17 @@ function* RegisterAdminProfile(data) {
 
 
 function* ResidenceUserAdmin(data) {
-    const {residenceName,numberResidents,emergencyNumber,addressResidence,cityResidence,provinceResidence,postalCodeResidence} = data.payload
+    const {residenceName,numberResidents,emergencyNumber,addressResidence,cityResidence,provinceResidence,postalCodeResidence,Username} = data.payload
     try {
-        const rep = yield axios.post(`${urlBakend}/api/createResidence`,{
+        const rep = yield axios.post(`${urlBakend}/api/registerResidence`,{
             "name":residenceName,
             "numberOfResidents":Number(numberResidents),
             "emergencyNumber":emergencyNumber,
             "address":addressResidence,
             "city":cityResidence,
             "state":provinceResidence,
-            "postalCode":postalCodeResidence
+            "postalCode":postalCodeResidence,
+            "admin":Username
             })
           yield put(ResidenceUserAdminSuccess(rep))
           yield put(LoginUserSuccess(rep))
@@ -90,7 +90,6 @@ function* ResidenceUserAdmin(data) {
                   }
             })
     } catch (error) {
-        console.log(error,"ERRORR")
         yield put(ResidenceUserAdminFail(error))
         Swal.close()
         Swal.fire({

@@ -16,8 +16,7 @@ export const LoginSlice = createSlice({
             state.Loading = true;
         },
         LoginUserSuccess: (state,action)=>{
-            localStorage.setItem("Autentication", JSON.stringify(action?.payload?.data))
-            console.log(action?.payload?.data)
+            localStorage.setItem("Autentication", JSON.stringify(action?.payload?.data.result))
             state.User = action.payload
             state.Loading = false;
             state.exito = true;

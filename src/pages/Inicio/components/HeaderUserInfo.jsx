@@ -4,10 +4,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { photoDefeft } from '../../../common/contants';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { DeleteUser } from '../../../redux/Slices/Users/UserSlice';
+import { showProgress } from '../../../helpers/swals';
 const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
 
   const [User,setUser] = useState({}) 
-
+  const dispatch = useDispatch();
+  const history = useNavigate()
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("Autentication"));
     setUser(user);
@@ -32,7 +37,9 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
           }
         }).then((result) => {
           if (result.isConfirmed) {
-            alert("SE ELIMINA EL USER")
+            showProgress()
+            dispatch(DeleteUser(id))
+            history('/Main/Residence')
           } 
           // else if (result.dismiss === Swal.DismissReason.cancel) {
           //   Swal.fire('Cancelado', 'La eliminación del usuario ha sido cancelada', 'error');
@@ -51,7 +58,7 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>
             </div>
-            {!User.userType == "user" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>):null}
+            {User.userType == "admin" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>):null}
 
             
       </div>

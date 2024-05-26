@@ -9,8 +9,6 @@ const Logout = () => {
     const history = useNavigate();
 
     useEffect(() => {
-      console.log("entro")
-
         dispatch(LogoutUser());//despachar accion para logout
         history("/")
 

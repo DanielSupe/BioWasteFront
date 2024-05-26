@@ -39,7 +39,6 @@ const roter = [
 
 const PageHeaders = [
   {name: "Contact BioWasted", link:"/Contacto",SVG:<ContactPhoneIcon/>},
-  {name: "Change account", link:"/Main/changeAccount",SVG:<ManageAccountsIcon/>},
   {name: "Settings", link:"/Main/settings",SVG:<SettingsIcon/>},
   {name: "Profile", link:"/Main/Profile",SVG:<PermIdentityIcon/> },//El icono lo tengo que pasar a un componente
   {name: "Salir",SVG: <FaSignOutAlt/> , link:"/Logout"},

@@ -42,7 +42,7 @@ const UserInfo = () => {
                         </div>
                     </div>
 
-                    {!User.userType == "user" ? (
+                    {User.userType == "admin" ? (
                         <div className=' w-full md:flex-grow min-h-[400px] md:h-full'>
                         <CommentsUser/>
                     </div>

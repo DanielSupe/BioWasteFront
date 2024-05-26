@@ -42,10 +42,6 @@ const TemplateHome = () => {
     }
 
 
-    useEffect(()=>{
-        console.log(popUpLogin,popUpRegister, "POPUPPP")
-
-    },[popUpLogin,popUpRegister])
 
     return (
         <div className=' h-full sm:h-auto w-full'>

@@ -11,6 +11,7 @@ import TemplateResidence from './pages/Residence/template/TemplateResidence';
 import UserInfo from './pages/Residence/template/UserInfo';
 import TemplateLearnMore from './pages/learnMore/template/TemplateLearnMore';
 import Logout from './pages/Inicio/components/Logout';
+import SettingsTemplate from './pages/Settings/template/SettingsTemplate';
 const App = () => {
 
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/Main/Residence" element={<TemplateResidence/>} />
           <Route path="/Main/Residence/User/:userId" element={<UserInfo/>} />
           <Route path="/Main/Alarm" element={<TemplateInicio />} />
+          <Route path="/Main/settings" element={<SettingsTemplate />} />
           {/* Otras rutas hijas aquí */}
         </Route>
 

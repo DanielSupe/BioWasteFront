@@ -16,10 +16,14 @@ export const TutorialSlice = createSlice({
         ReiniciarPass: (state) =>{
             state.pass = 0;
             state.TutorialSuccest = true;
-        }
+        },
+        ReiniciarState: (state) =>{
+            state.pass = 0;
+            state.TutorialSuccest = false;
+        },
         
     }
 })
 
-export const { NextPass,ReiniciarPass} = TutorialSlice.actions;
+export const { NextPass,ReiniciarPass,ReiniciarState} = TutorialSlice.actions;
 export default TutorialSlice.reducer

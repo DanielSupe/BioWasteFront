@@ -16,6 +16,9 @@ export const RegisterSlice = createSlice({
         RegisterUser: (state,action)=>{
             state.Loading = true;
         },
+        reinicioExitoUser: (state,action)=>{
+            state.exito = false;
+        },
         RegisterUserSuccess: (state,action)=>{
             state.UserCreate = action.payload
             state.Loading = false;
@@ -28,5 +31,5 @@ export const RegisterSlice = createSlice({
     }
 })
 
-export const { RegisterUser, RegisterUserSuccess, RegisterUserFail} = RegisterSlice.actions;
+export const { RegisterUser, RegisterUserSuccess, RegisterUserFail,reinicioExitoUser} = RegisterSlice.actions;
 export default RegisterSlice.reducer

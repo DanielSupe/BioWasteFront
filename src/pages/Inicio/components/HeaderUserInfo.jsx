@@ -19,9 +19,9 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
 
   },[])
 
-    const deleteUserForAdmin = (id)=>{
+    const deleteUserForAdmin = (id,name)=>{
         Swal.fire({
-          text: `¿Are you sure you want \n to delete User #${id}?`,
+          text: `¿Are you sure you want \n to delete ${name} #${id}?`,
           showCancelButton: true,
           confirmButtonText: 'Yes',
           cancelButtonText: 'No',
@@ -58,7 +58,7 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>
             </div>
-            {User.userType == "admin" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser)}} ><DeleteIcon fontSize='large' /></button>):null}
+            {User.userType == "admin" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser,nameUser)}} ><DeleteIcon fontSize='large' /></button>):null}
 
             
       </div>

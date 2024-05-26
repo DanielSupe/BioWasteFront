@@ -5,16 +5,29 @@ import HeaderUserInfo from '../../Inicio/components/HeaderUserInfo';
 import Swal from 'sweetalert2';
 import MonitoringPlan from '../../Inicio/components/MonitoringPlan';
 import CommentsUser from '../../Inicio/components/CommentsUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetUserById } from '../../../redux/Slices/Users/UserSlice';
+import { getUser } from '../../../helpers/tools';
 const UserInfo = () => {
     const { userId } = useParams();
+    const dispatch = useDispatch();
+    const { userActual,} = useSelector((state) => ({
+        userActual: state.Users.userActual,
+    }))
 
     const [User,setUser] = useState({}) 
+    const [findUser, setFindUser] = useState({})
 
     useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem("Autentication"));
+        const user = getUser();
         setUser(user);
+        dispatch(GetUserById(userId))
 
     },[])
+
+    useEffect(()=>{
+        setFindUser(userActual)
+    },[userActual])
 
 
     return (
@@ -23,10 +36,10 @@ const UserInfo = () => {
 
                 <div className='w-full md:h-[35%] py-4 px-8 box-border flex flex-col md:flex-row justify-around'>
                     <div className='md:w-[70%]  mr-4 box-border h-full'>
-                        <HeaderUserInfo idUser={userId} />
+                        <HeaderUserInfo nameUser={userActual?.username} apt={userActual?.apartment} idUser={userId} />
                     </div>
                     <div className=' flex-grow h-full'>
-                        <RachaUser racha={100} />
+                        <RachaUser racha={userActual?.plan?.streak} />
                     </div>
 
 

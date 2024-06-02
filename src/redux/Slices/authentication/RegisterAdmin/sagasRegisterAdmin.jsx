@@ -21,7 +21,8 @@ function* RegisterAdminProfile(data) {
             "state":province,
             "postalCode":postalCode
             })
-          yield put(RegisterUserAdminSuccess(rep))
+          yield put(RegisterUserAdminSuccess(rep.data))
+          yield put(LoginUserSuccess(rep))
             Swal.close()
             Swal.fire({
                 title:"success",
@@ -71,8 +72,8 @@ function* ResidenceUserAdmin(data) {
             "postalCode":postalCodeResidence,
             "admin":Username
             })
-          yield put(ResidenceUserAdminSuccess(rep))
-          yield put(LoginUserSuccess(rep))
+          yield put(ResidenceUserAdminSuccess(rep.data))
+          
           
             Swal.close()
             Swal.fire({

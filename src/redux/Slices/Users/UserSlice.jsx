@@ -20,7 +20,7 @@ export const UserSlice = createSlice({
             state.Loading=false,
             state.userActual={}
         },
-        GetUser: (state)=>{
+        GetUser: (state,action)=>{
             state.Loading = true;
         },
         GetUserSuccess: (state,action)=>{

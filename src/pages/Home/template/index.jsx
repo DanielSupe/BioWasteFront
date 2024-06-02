@@ -10,11 +10,20 @@ import Popup from '../../../common/components/IpopupB';
 import OptionsRegister from '../components/OptionsRegister';
 import LoginHome from '../components/LoginHome';
 import FooterTitles from '../../../common/components/FooterTitles';
+import { useDispatch, useSelector } from 'react-redux';
+import { MostrarContactoExito } from '../../../redux/Slices/Tutorial/TutorialSlice';
 const TemplateHome = () => {
+
+    const  dispatch = useDispatch();
+
+    const { contactoVisible} = useSelector((state) => ({
+        contactoVisible: state.Tutorial.contactoVisible,
+      }))
 
     
         const [popUpRegister, setPopUpRegister] = useState(false);
         const [popUpLogin, setPopUpLogin] = useState(false);
+        const [popUpContacto, setPopUpContacto] = useState(false);
 
 
     const listeBanner = [
@@ -29,6 +38,7 @@ const TemplateHome = () => {
         if(inver){
             setPopUpRegister(!popUpRegister);
             setPopUpLogin(!popUpLogin)
+            setPopUpContacto(!popUpContacto)
         }
         switch(title){
             case "New Account":
@@ -38,13 +48,21 @@ const TemplateHome = () => {
             case "Login":
                 setPopUpLogin(!popUpLogin)
                 break;
+
+            case "Contacto":
+                setPopUpContacto(!popUpContacto)
+                break;
         }
+    }
+
+    const cerrarPopupContacto = (name)=>{
+        dispatch(MostrarContactoExito())
     }
 
 
 
     return (
-        <div className=' h-full sm:h-auto w-full'>
+        <div className=' h-full sm:h-auto w-full flex flex-col'>
             <div className=' h-[100vh] lg:h-[65vh] xl:h-[60vh]  bg-cover bg-center bg-no-repeat flex flex-col items-start  box-border px-2 py-1' style={{ backgroundImage: `url('Images/Home/imagen_03.jpg')` }}>
                 <NavB handlePopUp={handlePopUp} />
                 <p className='font-bold text-xs sm:text-md'>Learn to reuse Biodegradable waste!</p>
@@ -55,18 +73,14 @@ const TemplateHome = () => {
             <div className='overflow-hidden w-full'>
                 <BannerHome items={listeBanner} />
             </div>
-            <div className=' mt-5'>
+            <div className={`mt-5 flex-grow w-full ${ contactoVisible ? "z-[1204]":""}`}>
                 <ContactoFooter />
             </div>
 
-            <div className='w-full flex flex-col justify-center items-start'>
-                <p className='font-medium text-lg box-border px-2'>Integrative proyect2/ 2024</p>
-                <FooterTitles/>
-            </div>
 
-
-
-
+            <Popup isOpen={contactoVisible} onClose={cerrarPopupContacto} name={"Contacto"}>
+                <p></p>
+            </Popup>
 
             <Popup isOpen={popUpRegister} onClose={handlePopUp} name={"New Account"}>
                 <OptionsRegister/>

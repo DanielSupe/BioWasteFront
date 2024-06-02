@@ -7,7 +7,7 @@ export default {
         'custom-gradient': 'linear-gradient(180deg, rgba(255,248,77,1) 0%, rgba(255,184,0,1) 100%)',
       },
       backgroundColor: {
-        whiteBioWaste: "#EAE2DE",
+        whiteBioWaste: "#FFFFFF",
         blueBioWaste: "#9DC4C4",
         greenBioWaste: "#81e28b",
         BlueHeader: "#a0c4c4",

@@ -11,6 +11,7 @@ import { getUser } from '../../../helpers/tools';
 const UserInfo = () => {
     const { userId } = useParams();
     const dispatch = useDispatch();
+    
     const { userActual,} = useSelector((state) => ({
         userActual: state.Users.userActual,
     }))

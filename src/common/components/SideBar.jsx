@@ -21,7 +21,7 @@ import NavW from './Nav';
 import ListIcon from '@mui/icons-material/List';
 import { Link, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ContactoFooter from '../../pages/Home/components/ContactoFooter';
 import FooterTitles from './FooterTitles';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -29,6 +29,8 @@ import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { FaSignOutAlt } from "react-icons/fa";
+import Popup from './IpopupB';
+import { MostrarContactoExito } from '../../redux/Slices/Tutorial/TutorialSlice';
 const drawerWidth = 240;
 
 const roter = [
@@ -115,12 +117,16 @@ export default function SideBar() {
   const history = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const { exito, User,pass } = useSelector((state) => ({
+  const { exito, User,pass,contactoVisible } = useSelector((state) => ({
     exito: state.Login.exito,
     User: state.Login.User,
     pass: state.Tutorial.pass,
+    contactoVisible: state.Tutorial.contactoVisible,
 
   }))
+
+  const dispatch = useDispatch();
+
 
 
   useEffect(() => {
@@ -132,6 +138,10 @@ export default function SideBar() {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
+  const cerrarPopupContacto = (name)=>{
+    dispatch(MostrarContactoExito())
+  }
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -227,13 +237,13 @@ export default function SideBar() {
           <div className="flex-grow overflow-auto">
             <Outlet />
           </div>
-          <div className="w-screen max-h-[20%] bg-white">
+          <div className={`w-screen max-h-[20%] bg-white ${ contactoVisible ? "z-[1204]":""}`}>
             <ContactoFooter />
-            <div className="w-full flex flex-col justify-center items-start">
-              <p className="font-medium text-lg box-border px-2">Integrative proyect2/ 2024</p>
-              <FooterTitles />
-            </div>
           </div>
+
+          <Popup isOpen={contactoVisible} onClose={cerrarPopupContacto} name={"Contacto"}>
+                
+            </Popup>
         </Box>
       </Box>
 

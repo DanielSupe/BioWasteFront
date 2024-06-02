@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 import { GetUser, GetUserByIDFail, GetUserByIdSuccess, GetUserFail, GetUserSuccess, UpdateUserFail, UpdateUserSuccess } from "./UserSlice";
 import { getUser } from "../../../helpers/tools";
 
-function* GetUserList() {
+function* GetUserList(action) {
     const user = getUser();
     try {
-        const rep = yield axios.get(`${urlBakend}/api/listUsers/${user.residence}`)
+        const rep = yield axios.get(`${urlBakend}/api/listUsers/${action && action.payload ? action.payload:user.residence}`)
           yield put(GetUserSuccess(rep.data.result))
             Swal.close()
         

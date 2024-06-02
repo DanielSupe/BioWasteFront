@@ -32,6 +32,10 @@ const SettingsTemplate = () => {
 
     ]
 
+    const listEncabezadoAdmin = [
+      {title:"User",nameKey:"username",type:"text"},
+    ]
+
     const handleUserUpdate = ()=>{
       showProgress()
       dispatch(UpdateUser(form))
@@ -71,7 +75,7 @@ const SettingsTemplate = () => {
     <div className=' w-full md:w-3/4 h-full md:h-[95%] bg-white rounded-xl p-4 box-border flex flex-col relative overflow-auto'>
         <h3 className=' text-blueMainTtile text-xl '> Settings</h3>
         <div className='w-full max-h-[100px]'>
-            <SettignsEncabezado list={listEncabezado} changeUser={handleChange} form={form}/>
+            <SettignsEncabezado list={ getUser().userType == "admin" ? listEncabezadoAdmin:listEncabezado} changeUser={handleChange} form={form}/>
         </div>
         <div className=' mt-4 rounded-lg w-full border-b-4 border-grayTenue rounde'/>
         <div className='w-full h-auto flex justify-start items-center'>
@@ -92,7 +96,7 @@ const SettingsTemplate = () => {
                 onChange={(e)=>{handleChange("residence",e.target.value)}}
                 value={form.residence}
                 />
-                <span onClick={()=>{UpdateResidence()}} className=' ml-4 cursor-pointer'><IoSend color='gray' size={30}/></span>
+                {getUser().userType == "admin" ? null:(<span onClick={()=>{UpdateResidence()}} className=' ml-4 cursor-pointer'><IoSend color='gray' size={30}/></span>)}
             </div>
         </div>
 

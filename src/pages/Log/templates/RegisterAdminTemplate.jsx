@@ -129,7 +129,7 @@ const RegisterAdminTemplate = () => {
             />
             <p>By clicking here, a verification to validate your account will be sent to your email/phone, the code will be sent once but you can request another one at any time.</p>
           </div>
-          <button className=' bg-greenBioWaste px-5 py-1 rounded-lg font-bold text-xl text-white'>Verify</button>
+          {/* <button className=' bg-greenBioWaste px-5 py-1 rounded-lg font-bold text-xl text-white'>Verify</button> */}
         </div>
         <div className='mt-4 w-full border border-grayBioWaste' />
         <Button

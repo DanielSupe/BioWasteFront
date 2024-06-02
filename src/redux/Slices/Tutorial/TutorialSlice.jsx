@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     pass: 0,
-    TutorialSuccest: false
+    TutorialSuccest: false,
+    contactoVisible: false,
 };
 
 export const TutorialSlice = createSlice({
@@ -21,9 +22,15 @@ export const TutorialSlice = createSlice({
             state.pass = 0;
             state.TutorialSuccest = false;
         },
+        MostrarContacto: (state)=>{
+            state.contactoVisible = true;
+        },
+        MostrarContactoExito: (state) =>{
+            state.contactoVisible = false;
+        },
         
     }
 })
 
-export const { NextPass,ReiniciarPass,ReiniciarState} = TutorialSlice.actions;
+export const { NextPass,ReiniciarPass,ReiniciarState,MostrarContacto,MostrarContactoExito} = TutorialSlice.actions;
 export default TutorialSlice.reducer

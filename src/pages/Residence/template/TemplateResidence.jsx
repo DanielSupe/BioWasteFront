@@ -5,17 +5,17 @@ import Swal from 'sweetalert2';
 import { photoDefeft } from '../../../common/contants';
 import { Link,useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { DeleteUser, GetUser } from '../../../redux/Slices/Users/UserSlice';
+import { DeleteUser, GetUser, GetUserById } from '../../../redux/Slices/Users/UserSlice';
 import { showProgress } from '../../../helpers/swals';
+import { getUser } from '../../../helpers/tools';
 const TemplateResidence = () => {
 
   const dispatch = useDispatch();
   const history = useNavigate()
 
-  const { data} = useSelector((state) => ({
+  const { data,userActual} = useSelector((state) => ({
     data: state.Users.data,
-
-
+    userActual: state.Users.userActual,
 }))
 
 const [ListUser,setListUser] = useState([]) 
@@ -53,7 +53,12 @@ const [User,setUser] = useState({})
     setUser(user);
     if(user.residence){
       dispatch(GetUser())
-    }else{
+    }
+    else if(user.userType == "admin"){
+      const user = getUser()
+      dispatch(GetUserById(user.id || user._id))
+    }
+    else{
       Swal.fire({
         title:"No residence",
         icon:"error",
@@ -70,8 +75,17 @@ const [User,setUser] = useState({})
 
   
 useEffect(() => {
+  console.log("entro aqui",data)
   setListUser(data);
 }, [data]);
+
+
+  
+useEffect(() => {
+  if(userActual){
+    dispatch(GetUser(userActual._id))
+  }
+}, [userActual]);
 
 
 
@@ -143,7 +157,7 @@ useEffect(() => {
                     
                   </Link>
                 )
-              })):null}
+              })):"Todavia no hay residente"}
             </div>
         </div>
   </div>

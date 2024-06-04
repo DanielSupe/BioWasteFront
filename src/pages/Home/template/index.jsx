@@ -62,7 +62,7 @@ const TemplateHome = () => {
 
 
     return (
-        <div className=' h-full sm:h-auto w-full flex flex-col'>
+        <div className=' h-full lg:h-screen sm:h-auto w-full flex flex-col '>
             <div className=' h-[100vh] lg:h-[65vh] xl:h-[60vh]  bg-cover bg-center bg-no-repeat flex flex-col items-start  box-border px-2 py-1' style={{ backgroundImage: `url('Images/Home/imagen_03.jpg')` }}>
                 <NavB handlePopUp={handlePopUp} />
                 <p className='font-bold text-xs sm:text-md'>Learn to reuse Biodegradable waste!</p>
@@ -73,7 +73,7 @@ const TemplateHome = () => {
             <div className='overflow-hidden w-full'>
                 <BannerHome items={listeBanner} />
             </div>
-            <div className={`mt-5 flex-grow w-full ${ contactoVisible ? "z-[1204]":""}`}>
+            <div className={`mt-auto w-full bg-amber-500 ${ contactoVisible ? "z-[1204]":""}`}>
                 <ContactoFooter />
             </div>
 

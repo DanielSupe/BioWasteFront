@@ -128,7 +128,7 @@ useEffect(() => {
               {ListUser.length > 0 ?
               (ListUser.map((item)=>{
                 return(
-                  <Link to={`/Main/Residence/User/${item._id}`} className='w-full cursor-pointer h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.username}-${item._id}`}>
+                  <Link to={`/Main/Residence/User/${item._id}-user`} className='w-full cursor-pointer h-auto flex justify-evenly items-center box-border pr-4 md:pr-0 border-b-4 border-slate-300' key={`${item.username}-${item._id}`}>
                     {/* primer cuadro------------------------ */}
                     <div className='flex h-full  justify-center items-center box-border'>
                       <img className=' h-[40px] md:h-[60px] rounded-[50%] md:mr-3' src={item.urlFoto ? item.urlFoto : photoDefeft}/>

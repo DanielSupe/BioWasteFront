@@ -1,5 +1,5 @@
 export const PrefijoContacto = "+57"
-export const NumberContacto = "xxxxxxxxxx"
+export const NumberContacto = "300 3135246"
 
  const UrlDEV = "http://localhost:3000"
  const UrlPRD = ""

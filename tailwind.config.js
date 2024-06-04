@@ -10,9 +10,10 @@ export default {
         whiteBioWaste: "#FFFFFF",
         blueBioWaste: "#9DC4C4",
         greenBioWaste: "#81e28b",
-        BlueHeader: "#a0c4c4",
+        BlueHeader: "#3AA299",
         grayUser: "#F5F5F5",
-        inputComment: "#D9D9D9"
+        inputComment: "#D9D9D9",
+        greenButton: "#6CF669"
       },
       colors: {
         GreenRecycle: "#006838",

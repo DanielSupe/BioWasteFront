@@ -47,7 +47,7 @@ const inPage = [
   {title: "Home", link:"/Main"},
   {title: "Contact BioWasted", link:"/Contacto"},
   {title: "Settings", link:"/Main/settings"},
-  {title: <PermIdentityIcon/> , link:user && user._id ? `/Main/Residence/User/${user._id}` : '/'},//El icono lo tengo que pasar a un componente
+  {title: <PermIdentityIcon/> , link:user && user._id ? `/Main/Residence/User/${user._id}-Profile` : '/'},//El icono lo tengo que pasar a un componente
   {title: <FaSignOutAlt/> , link:"/Logout"},
 ]
 

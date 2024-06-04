@@ -4,6 +4,7 @@ import AuthenticationSaga from "./Slices/authentication/saga";
 import LoginSaga from "./Slices/authentication/login/saga";
 import AuthenticationSagaAdmin from "./Slices/authentication/RegisterAdmin/sagasRegisterAdmin";
 import UserSaga from "./Slices/Users/UserSaga";
+import PlanSaga from "./Slices/MonitoringPlan/PlanSaga";
 export const saga = createSagaMiddleware(
     
 )
@@ -14,7 +15,8 @@ export function* rootSaga() {
     AuthenticationSaga(),
     LoginSaga(),
     AuthenticationSagaAdmin(),
-    UserSaga()
+    UserSaga(),
+    PlanSaga(),
 
 
       //Mas sagas

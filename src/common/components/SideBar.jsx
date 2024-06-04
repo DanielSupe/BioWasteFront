@@ -157,7 +157,7 @@ export default function SideBar() {
             <NavW />
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open} sx={{ '& .MuiDrawer-paper': { backgroundColor: "#a0c4c4" } }}>
+        <Drawer variant="permanent" open={open} sx={{ '& .MuiDrawer-paper': { backgroundColor: "#3AA299" } }}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

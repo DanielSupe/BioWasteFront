@@ -12,6 +12,8 @@ import UserInfo from './pages/Residence/template/UserInfo';
 import TemplateLearnMore from './pages/learnMore/template/TemplateLearnMore';
 import Logout from './pages/Inicio/components/Logout';
 import SettingsTemplate from './pages/Settings/template/SettingsTemplate';
+import MonitoringPlanTemplate from './pages/monitoringPlan/template/MonitoringPlanTemplate';
+import InfoPlan from './pages/monitoringPlan/template/InfoPlan';
 const App = () => {
 
 
@@ -29,7 +31,8 @@ const App = () => {
         {/* <Route path="/Inicio" element={<TemplateInicio/>} /> */}
         <Route path="/Main" element={<SideBar/>}>
           <Route index element={<TemplateInicio />} />
-          <Route path="/Main/MonitorinPlan" element={<TemplateInicio />} />
+          <Route path="/Main/MonitorinPlan" element={<MonitoringPlanTemplate />} />
+          <Route path="/Main/MonitorinPlan/plan/:planId" element={<InfoPlan />} />
           <Route path="/Main/Residence" element={<TemplateResidence/>} />
           <Route path="/Main/Residence/User/:userId" element={<UserInfo/>} />
           <Route path="/Main/Alarm" element={<TemplateInicio />} />

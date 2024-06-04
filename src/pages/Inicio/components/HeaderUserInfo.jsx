@@ -8,7 +8,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { DeleteUser } from '../../../redux/Slices/Users/UserSlice';
 import { showProgress } from '../../../helpers/swals';
-const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
+const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100,profile }) => {
 
   const [User,setUser] = useState({}) 
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const HeaderUserInfo = ({ urlImage, nameUser = "User", idUser, apt = 100 }) => {
                 </div>
                 <p className=' text-gray-400 font-medium text-2xl text-center'>Apt{apt}</p>
             </div>
-            {User.userType == "admin" ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser,nameUser)}} ><DeleteIcon fontSize='large' /></button>):null}
+            {User.userType == "admin" && !profile ? (<button className=' absolute bottom-0 left-0 md:relative' onClick={()=>{deleteUserForAdmin(idUser,nameUser)}} ><DeleteIcon fontSize='large' /></button>):null}
 
             
       </div>
@@ -71,6 +71,7 @@ HeaderUserInfo.propTypes = {
     nameUser: PropTypes.string,
     idUser: PropTypes.number.isRequired,
     apt: PropTypes.number,
+    profile:PropTypes.bool
 };
 
 export default HeaderUserInfo

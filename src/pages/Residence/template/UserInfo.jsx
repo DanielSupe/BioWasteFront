@@ -18,13 +18,23 @@ const UserInfo = () => {
 
     const [User,setUser] = useState({}) 
     const [findUser, setFindUser] = useState({})
+    const [id, setId] = useState(0)
+    const [profile, setProfile] = useState(false);
+
 
     useEffect(()=>{
+        const idUser = userId.split('-');
+        console.log(idUser,"user ")
+        if(idUser[1].trim() == "Profile"){
+            console.log("ENTROOO")
+            setProfile(true);
+        }
+        setId(idUser[0].trim())
         const user = getUser();
         setUser(user);
-        dispatch(GetUserById(userId))
+        dispatch(GetUserById(idUser[0].trim()))
 
-    },[])
+    },[userId])
 
     useEffect(()=>{
         setFindUser(userActual)
@@ -37,7 +47,7 @@ const UserInfo = () => {
 
                 <div className='w-full md:h-[35%] py-4 px-8 box-border flex flex-col md:flex-row justify-around'>
                     <div className='md:w-[70%]  mr-4 box-border h-full'>
-                        <HeaderUserInfo nameUser={userActual?.username} apt={userActual?.apartment} idUser={userId} />
+                        <HeaderUserInfo profile={profile} nameUser={userActual?.username} apt={userActual?.apartment} idUser={id} />
                     </div>
                     <div className=' flex-grow h-full'>
                         <RachaUser racha={userActual?.plan?.streak} />
@@ -56,7 +66,7 @@ const UserInfo = () => {
                         </div>
                     </div>
 
-                    {User.userType == "admin" ? (
+                    {User.userType == "admin" && !profile ? (
                         <div className=' w-full md:flex-grow min-h-[400px] md:h-full'>
                         <CommentsUser/>
                     </div>

@@ -1,7 +1,23 @@
 import React from 'react'
 import { Button } from 'reactstrap'
 import PropTypes from 'prop-types';
-const ItemPlan = ({ title, urlImage, parrafo, estado =false, color = " bg-[#3AA29]", func }) => {
+const ItemPlan = ({title, urlImage, parrafo, porcentaje, color = " bg-[#3AA29]", func,rango }) => {
+
+
+    const definirState = ()=>{
+        if(porcentaje >= rango[0] && porcentaje <= rango[1]){
+            return "Done!";
+        }
+        else if(porcentaje < rango[0]){
+            return "Block"
+        }
+        
+        else{
+            return "Finish!";
+        }
+    }
+
+
     return (
         <div className='w-full h-full'>
             <div className='rounded-xl bg-grayUser w-full h-[80%] flex flex-col shadow-lg overflow-hidden'>
@@ -23,7 +39,7 @@ const ItemPlan = ({ title, urlImage, parrafo, estado =false, color = " bg-[#3AA2
             </div>
 
             <div className=' w-full h-[20%]  flex justify-center items-center'>
-                <Button className=' w-[76px] h-[52px] bg-greenButton rounded-xl text-white shadow-lg'>Done!</Button>
+                <Button onClick={()=>{func()}} disabled={definirState() != "Done!"} className={`w-[76px] h-[52px] ${definirState() == "Done!" ? "bg-greenButton":" bg-gray-400"} rounded-xl text-white shadow-lg`}>{definirState()}</Button>
             </div>
 
             {/* disabled={true si state es true este pasa a ser false y viseversa   } */}
@@ -36,9 +52,10 @@ ItemPlan.propTypes = {
     title: PropTypes.string,
     urlImage: PropTypes.string.isRequired,
     parrafo: PropTypes.string,
-    estado: PropTypes.bool.isRequired,
+    porcentaje: PropTypes.number.isRequired,
     color: PropTypes.string,
-    func: PropTypes.func
+    func: PropTypes.func,
+    rango: PropTypes.any
 };
 
 

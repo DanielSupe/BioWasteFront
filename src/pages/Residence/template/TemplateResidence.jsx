@@ -37,11 +37,11 @@ const [User,setUser] = useState({})
 
   const SelectPhotoPlan = (prop)=>{
     switch(prop){
-      case "water":
+      case 2:
         return "/Images/Main/imagePlan_2.png"
-      case "nature":
+      case 3:
         return "/Images/Main/imagePlan_3.png"
-      case "otra":
+      case 1:
         return "/Images/Main/imagePlan_1.png"
       default:
         return "/Images/Main/imagePlan_1.png"
@@ -75,7 +75,6 @@ const [User,setUser] = useState({})
 
   
 useEffect(() => {
-  console.log("entro aqui",data)
   setListUser(data);
 }, [data]);
 
@@ -142,13 +141,13 @@ useEffect(() => {
                     </div>
                     {/* segundo cuadro------------------------------------ */}
                     <div className='flex justify-center items-center h-full max-w-[50%] flex-grow overflow-hidden box-border'>
-                      <PlanProgress urlImage={SelectPhotoPlan(item?.plan?.planType)} progress={item?.plan?.progress} ResidenceList={true}  title={"plan with greatest progress"}/>
+                      <PlanProgress urlImage={SelectPhotoPlan(item?.plan?._id)} progress={item?.plan?.progress} ResidenceList={true}  title={"plan with greatest progress"}/>
                     </div>
 
                     <div className='h-full  flex justify-center items-center box-border'>
                       <div className='h-full  flex justify-between items-center'>
                         <img className=' max-h-[60%]' src='/Images/Main/LlamaMain.png'/>
-                        <p className=' text-gray-400 font-medium text-2xl text-center'>{item.plan?.streak}</p>
+                        <p className=' text-gray-400 font-medium text-2xl text-center'>{item?.streak}</p>
                       </div>
                       {User.userType == "admin" ? (<button onClick={()=>{deleteUserForAdmin(item._id,item.username)}} ><DeleteIcon className='h-[60%] cursor-pointer z-[9999]'/></button>):null}
                       

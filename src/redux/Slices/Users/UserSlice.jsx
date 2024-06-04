@@ -6,7 +6,7 @@ const initialState = {
     exito:false,
     error:false,
     Loading:false,
-    userActual: {}
+    userActual: null
 };
 
 export const UserSlice = createSlice({

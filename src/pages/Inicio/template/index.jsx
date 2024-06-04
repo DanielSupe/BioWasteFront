@@ -7,22 +7,25 @@ import Tutorial from '../components/Tutorial'
 import { useDispatch, useSelector } from 'react-redux'
 import { MostrarContactoExito, NextPass, ReiniciarPass } from '../../../redux/Slices/Tutorial/TutorialSlice'
 import RachaUser from '../components/RachaUser'
-import { GetUser } from '../../../redux/Slices/Users/UserSlice'
+import { GetUser, GetUserById } from '../../../redux/Slices/Users/UserSlice'
 import { reinicioExitoAdmin } from '../../../redux/Slices/authentication/RegisterAdmin/RegisterAdminSlice'
 import { reinicioExitoUser } from '../../../redux/Slices/authentication/RegisterSlice'
+import { getUser } from '../../../helpers/tools'
 
 const TemplateInicio = () => {
   const dispatch = useDispatch();
 
-  const { pass,exitoAdmin,exitoUser,TutorialSuccest,listUser,contactoVisible} = useSelector((state) => ({
+  const { pass,exitoAdmin,exitoUser,TutorialSuccest,listUser,contactoVisible,userActual} = useSelector((state) => ({
     contactoVisible: state.Tutorial.contactoVisible,
     pass: state.Tutorial.pass,
     TutorialSuccest: state.Tutorial.TutorialSuccest,
     exitoAdmin: state.RegisterAdmin.exito,
     exitoUser: state.Register.exito,
     listUser: state.Users.data,
+    userActual: state.Users.userActual,
 
 }))
+
 
   const [popUpTutorial, setPopUpTutorial] = useState(false);
 
@@ -40,7 +43,9 @@ const nextPassTutorial = ()=>{
 }
 
 useEffect(()=>{
+  const user = getUser();
   dispatch(GetUser())
+  dispatch(GetUserById(user._id));
   if((exitoAdmin || exitoUser) && !TutorialSuccest ){
     handlePopUp()
     dispatch(reinicioExitoAdmin())
@@ -59,7 +64,7 @@ const cerrarPopupContacto = (name)=>{
         <div className=' rounded-lg w-full border-b-2 border-slate-300'/>
 
         <div className=' h-auto flex-grow w-full mt-1 overflow-hidden'>     {/*CONTENIDO---------------------  */}
-          <MonitoringPlan/>
+          <MonitoringPlan plans={userActual?.plans}/>
         </div>
       </div>
 
@@ -68,7 +73,7 @@ const cerrarPopupContacto = (name)=>{
       <div className='h-full min-h-[200px] w-full md:w-1/3 rounded-lg flex flex-col gap-4'>
 
         <div className={`w-full h-1/3 ${pass == 3 ? "z-[1204]":""}`}>
-          <RachaUser pass={pass} racha={100}/>
+          <RachaUser pass={pass} racha={userActual?.streak}/>
         </div>
 
 

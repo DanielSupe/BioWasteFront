@@ -24,9 +24,7 @@ const UserInfo = () => {
 
     useEffect(()=>{
         const idUser = userId.split('-');
-        console.log(idUser,"user ")
         if(idUser[1].trim() == "Profile"){
-            console.log("ENTROOO")
             setProfile(true);
         }
         setId(idUser[0].trim())
@@ -50,7 +48,7 @@ const UserInfo = () => {
                         <HeaderUserInfo profile={profile} nameUser={userActual?.username} apt={userActual?.apartment} idUser={id} />
                     </div>
                     <div className=' flex-grow h-full'>
-                        <RachaUser racha={userActual?.plan?.streak} />
+                        <RachaUser racha={userActual?.streak} />
                     </div>
 
 
@@ -62,7 +60,7 @@ const UserInfo = () => {
                         <div className=' rounded-lg w-full border-b-2 border-slate-300' />
 
                         <div className=' h-auto flex-grow w-full mt-1 overflow-hidden'>     {/*CONTENIDO---------------------  */}
-                            <MonitoringPlan />
+                            <MonitoringPlan plans={userActual?.plans} />
                         </div>
                     </div>
 

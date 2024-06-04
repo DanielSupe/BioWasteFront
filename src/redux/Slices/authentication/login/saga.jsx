@@ -5,6 +5,7 @@ import Swal from "sweetalert2"
 import urlBakend from "../../../../common/contants"
 import { ResetStateUser } from "../../Users/UserSlice"
 import { ReiniciarState } from "../../Tutorial/TutorialSlice"
+import { ReiniciarPlan } from "../../MonitoringPlan/PlanSlice"
 
 
 function* RegisterUserProfile(data) {
@@ -43,6 +44,7 @@ function* RegisterUserProfile(data) {
 function* resetState(data) {
     yield put(ResetStateUser())
     yield put(ReiniciarState())
+    yield put(ReiniciarPlan())
 }
 
 

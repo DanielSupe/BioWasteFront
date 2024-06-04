@@ -14,7 +14,6 @@ function* GetUserList(action) {
         
     } catch (error) {
         yield put(GetUserFail(error))
-        Swal.close()
         
     }
     

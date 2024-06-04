@@ -22,7 +22,7 @@ const ListadoUsuarios = ({list}) => {
                     <p className=' text-gray-400 font-medium text-xl w-1/3 text-center'>{user.username}</p>
                     <div className='flex justify-center items-center h-full'>
                         <img className=' min-h-[35px] max-h-[45px]' src='Images/Main/LlamaMain.png'/>
-                        <p className='text-gray-400 font-medium text-xl'>{user.plan?.streak}</p>
+                        <p className='text-gray-400 font-medium text-xl'>{user?.streak}</p>
                     </div>
                 </div>
             )

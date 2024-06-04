@@ -28,7 +28,7 @@ const ItemPlan = ({title, urlImage, parrafo, porcentaje, color = " bg-[#3AA29]",
                 </div>
 
                 <div className='w-full h-[50%]  overflow-hidden text-ellipsis'>
-                <p className='w-full h-full'>
+                <p className='w-full h-full text-sm'>
                         {parrafo}
                     </p>
                 </div>

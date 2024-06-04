@@ -156,7 +156,7 @@ useEffect(() => {
                     
                   </Link>
                 )
-              })):"Todavia no hay residente"}
+              })):"no residents yet"}
             </div>
         </div>
   </div>

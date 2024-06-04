@@ -29,6 +29,7 @@ export const UserSlice = createSlice({
             state.exito = true;
         },
         GetUserFail: (state,action)=>{
+            state.data = [],
             state.Loading = false;
             state.error = action.payload
         },
